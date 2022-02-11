@@ -1,0 +1,18 @@
+$main-color:rgb(250, 174, 32);
+ul.subtitles {
+    display: flex;
+    gap: 0.1rem;
+    list-style-type: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 1200px;
+    li {
+        border-bottom: 2px solid transparent;
+        padding: 0.4rem;
+        &:hover {
+            border-color: $main-color;
+            color: $main-color;
+            cursor: pointer;
+        }
+    }
+}

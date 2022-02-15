@@ -1,0 +1,24 @@
+@mixin flex($dir) {
+    display: flex;
+    justify-content: center;
+    flex-direction: $dir;
+}
+
+.home {
+    &__image {
+        width: 100%;
+        z-index: -1;
+        margin-bottom: -15%;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    }
+    &__container {
+        @include flex(column);
+        margin: 0 auto;
+        max-width: 1500px;
+        &__row {
+            @include flex(row);
+            z-index: 1;
+            margin: 0 5px;
+        }
+    }
+}

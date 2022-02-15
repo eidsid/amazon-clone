@@ -18,6 +18,7 @@ $main_header_bgcolor:#131921;
 $main_color:white;
 .header {
     width: 100%;
+    overflow-x: hidden;
     height: 3rem;
     padding: 0.7rem;
     @include flex(row);

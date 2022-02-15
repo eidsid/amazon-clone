@@ -4,12 +4,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./header.scss";
 import Subheader from "./sub_header/Subheader";
 import Subtitles from "./subtitles/Subtitles";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <>
       <header className="header">
-        <img src={logo} alt="Amazon-logo" className="logo" />
+        <Link to="/">
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
         <div className="header__search">
           <input type="text" className="header__search__Input" />
           <SearchIcon className="header__search__Icon" />
@@ -30,11 +33,13 @@ const Header = () => {
           <div className="header__nav__item">
             <span>Your</span>
             <span>Prime</span>
-          </div>
-          <div className="header__nav__item">
-            <ShoppingBasketIcon className="__icon" />
-            <span id="shoppingCount">0</span>
-          </div>
+          </div>{" "}
+          <Link to="/checkout" className="link">
+            <div className="header__nav__item">
+              <ShoppingBasketIcon className="__icon" />
+              <span id="shoppingCount">0</span>
+            </div>
+          </Link>
         </div>
       </header>{" "}
       <Subheader />

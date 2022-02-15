@@ -1,0 +1,15 @@
+.checkout {
+    display: flex;
+    background-color: white;
+    padding: 1%;
+    &__left {
+        &__adimg {
+            width: 100%;
+        }
+        &__title {
+            margin-right: 10px;
+            padding: 10px;
+            border-bottom: 1px solid lightgray;
+        }
+    }
+}

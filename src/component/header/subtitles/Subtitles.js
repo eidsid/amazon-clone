@@ -1,20 +1,19 @@
 import "./subtitles.scss";
-const Subtitles = () => {
+const Subtitles = (props) => {
+  let subtitlesDom = () => {
+    return props.titles.map((title) => {
+      return (
+        <li onClick={() => props.filterProducts(title)} key={title}>
+          {title}
+        </li>
+      );
+    });
+  };
   return (
     <>
       <ul className="subtitles">
         <li>Home</li>
-        <li>Best Sellers</li>
-        <li>Kitchen & Dining</li>
-        <li>Future</li>
-        <li>Cookware</li>
-        <li>Bakeware</li>
-        <li>Small Appliances</li>
-        <li>Large Appliances</li>
-        <li>Home Decor</li>
-        <li> Bedding</li>
-        <li>Household Supplies</li>
-        <li> Tool & Home Imporovement</li>
+        {subtitlesDom}
       </ul>
       <hr />
     </>

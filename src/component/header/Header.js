@@ -5,8 +5,27 @@ import "./header.scss";
 import Subheader from "./sub_header/Subheader";
 import Subtitles from "./subtitles/Subtitles";
 import { Link } from "react-router-dom";
-
+import products from "../../setup/Productsdb/products";
+import { useState } from "react";
 const Header = () => {
+  let titles = products("https://fakestoreapi.com/products/categories");
+
+  const [subtitles, setsubtitles] = useState([]);
+  const [subtitleslike, setsubtitleslike] = useState([]);
+  let filterProducts = (title) => {
+    add_subtitles(title);
+  };
+  let add_subtitles = (title) => {
+    if (!subtitleslike.includes(title)) {
+      setsubtitleslike((titles) => [...titles, title]);
+      // setsubtitlesDom();
+      setsubtitles();
+    }
+  };
+  let setsubtitlesDom = () => {
+    return <Subtitles titles={subtitleslike} filterProducts={filterProducts} />;
+  };
+
   return (
     <>
       <header className="header">
@@ -42,8 +61,8 @@ const Header = () => {
           </Link>
         </div>
       </header>{" "}
-      <Subheader />
-      <Subtitles />
+      <Subheader titles={titles} filterProducts={filterProducts} />
+      {setsubtitlesDom}
     </>
   );
 };

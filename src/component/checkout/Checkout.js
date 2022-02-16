@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import Subtotal from "../subtotal/Subtotal";
 import "./checkout.scss";
 const Checkout = () => {
+  //  const items = useSelector((state) => state.Baskt);
+
   return (
     <div className="checkout">
       <div className="checkout__left">

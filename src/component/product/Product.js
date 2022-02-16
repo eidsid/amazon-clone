@@ -1,14 +1,18 @@
 import "./style.scss";
 import { useDispatch } from "react-redux";
-import { ADD_ITEM } from "../../setup/actions/Baskt";
-const Prodcut = ({ title, image, price, rating }) => {
+const Prodcut = ({
+  id,
+  title,
+  image,
+  price,
+  rating,
+  description,
+  category,
+}) => {
   const dispatch = useDispatch();
-  const addToBaskt = () => {
-    let item = { title, image, price, rating };
-    dispatch(ADD_ITEM(item));
-  };
+  const addToBaskt = () => {};
   return (
-    <div className="product">
+    <div className="product" id={id}>
       <div className="product__info">
         <p> {title} </p>{" "}
         <p className="product__info__price">

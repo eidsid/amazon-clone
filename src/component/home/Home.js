@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import Prodcut from "../product/Product";
 import "./style.scss";
 const Home = () => {
+  const items = useSelector((state) => state.Baskt);
+  console.log(items);
   let product1 = {
     title: "prodct1",
     image: " https://m.media-amazon.com/images/I/61s6UawAo5L._AC_SL1500_.jpg",

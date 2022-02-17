@@ -10,7 +10,6 @@ const Subtitles = (props) => {
   return (
     <>
       <ul className="subtitles">
-        <li>Home</li>
         {subtitlesDom}
       </ul>
       <hr />

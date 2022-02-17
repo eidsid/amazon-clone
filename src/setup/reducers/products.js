@@ -1,7 +1,6 @@
-export default (products = [], action) => {
-  // let my_products = products;
+const actions = (products = [], action) => {
   switch (action.type) {
-    case "FETCH_ALL_PRODUCTS":
+    case "FETCH_AAL_PRODUCTS":
       return action.payload;
     case "FILTER_BY_CATOGARY":
       return action.payload;
@@ -13,3 +12,4 @@ export default (products = [], action) => {
       return products;
   }
 };
+export default actions;

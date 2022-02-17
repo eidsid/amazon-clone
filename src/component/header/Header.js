@@ -12,10 +12,9 @@ import { FilterProductsCat } from "../../setup/actions/Products";
 const Header = () => {
   let titles = useFetch("https://fakestoreapi.com/products/categories");
 
-  const [subtitles, setsubtitles] = useState([]);
+  const [subtitles, setsubtitles] = useState(["ALL"]);
   const dispatch = useDispatch();
   let filterProducts = (title) => {
-    console.log(title);
     dispatch(FilterProductsCat(title));
     add_subtitles(title);
   };

@@ -1,14 +1,12 @@
 import "./subtitles.scss";
 const Subtitles = (props) => {
-  let subtitlesDom = () => {
-    return props.titles.map((title) => {
-      return (
-        <li onClick={() => props.filterProducts(title)} key={title}>
-          {title}
-        </li>
-      );
-    });
-  };
+  let subtitlesDom = props.titles.map((linke) => {
+    return (
+      <li onClick={() => props.filterProducts(linke)} key={linke}>
+        {linke}
+      </li>
+    );
+  });
   return (
     <>
       <ul className="subtitles">

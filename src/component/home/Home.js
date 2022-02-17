@@ -1,12 +1,11 @@
 import Prodcut from "../product/Product";
 import "./style.scss";
+import { useSelector } from "react-redux";
 
-import products from "../../setup/Productsdb/products";
 const Home = () => {
-  const items = products("https://fakestoreapi.com/products");
-
-  let productsDom = items.map((item) => {
-    return <Prodcut {...item} key={item.id} />;
+  let products = useSelector((state) => state.Products);
+  let productsDom = products.map((item, index) => {
+    return <Prodcut {...item} key={index} />;
   });
   return (
     <div className="home">

@@ -5,26 +5,30 @@ import "./header.scss";
 import Subheader from "./sub_header/Subheader";
 import Subtitles from "./subtitles/Subtitles";
 import { Link } from "react-router-dom";
-import products from "../../setup/Productsdb/products";
+import useFetch from "../../setup/FetchAPI/Fetchapi";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { FilterProductsCat } from "../../setup/actions/Products";
 const Header = () => {
-  let titles = products("https://fakestoreapi.com/products/categories");
+  let titles = useFetch("https://fakestoreapi.com/products/categories");
 
   const [subtitles, setsubtitles] = useState([]);
-  const [subtitleslike, setsubtitleslike] = useState([]);
+  const dispatch = useDispatch();
   let filterProducts = (title) => {
+    console.log(title);
+    dispatch(FilterProductsCat(title));
     add_subtitles(title);
   };
+
   let add_subtitles = (title) => {
-    if (!subtitleslike.includes(title)) {
-      setsubtitleslike((titles) => [...titles, title]);
-      // setsubtitlesDom();
-      setsubtitles();
+    if (!subtitles.includes(title)) {
+      setsubtitles((titles) => [...titles, title]);
     }
   };
-  let setsubtitlesDom = () => {
-    return <Subtitles titles={subtitleslike} filterProducts={filterProducts} />;
-  };
+
+  let setsubtitlesDom = (
+    <Subtitles titles={subtitles} filterProducts={filterProducts} />
+  );
 
   return (
     <>

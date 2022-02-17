@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 const useFetch = (api) => {
-  const [Products, setProducts] = useState([]);
+  const [data, setdata] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(api);
-        setProducts(data);
+        setdata(data);
       } catch (error) {
         console.log(error.message);
       }
@@ -15,6 +15,6 @@ const useFetch = (api) => {
     fetchData();
   }, [api]);
 
-  return Products;
+  return data;
 };
 export default useFetch;

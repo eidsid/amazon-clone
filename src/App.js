@@ -5,11 +5,14 @@ import Checkout from "./component/checkout/Checkout";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getItems } from "./setup/actions/Baskt";
+import { getProducts } from "./setup/actions/Products";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getItems());
+    dispatch(getProducts());
   }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Header />

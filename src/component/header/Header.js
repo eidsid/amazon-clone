@@ -8,7 +8,10 @@ import { Link } from "react-router-dom";
 import useFetch from "../../setup/FetchAPI/Fetchapi";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FilterProductsCat } from "../../setup/actions/Products";
+import {
+  FilterProductsSearch,
+  FilterProductsCat,
+} from "../../setup/actions/Products";
 const Header = () => {
   let titles = useFetch("https://fakestoreapi.com/products/categories");
 
@@ -29,6 +32,10 @@ const Header = () => {
     <Subtitles titles={subtitles} filterProducts={filterProducts} />
   );
 
+  let handelSearchChange = (e) => {
+    dispatch(FilterProductsSearch(e.target.value));
+  };
+
   return (
     <>
       <header className="header">
@@ -36,7 +43,11 @@ const Header = () => {
           <img src={logo} alt="Logo" className="logo" />
         </Link>
         <div className="header__search">
-          <input type="text" className="header__search__Input" />
+          <input
+            type="text"
+            className="header__search__Input"
+            onChange={handelSearchChange}
+          />
           <SearchIcon className="header__search__Icon" />
         </div>
         <div className="header__nav">
@@ -44,15 +55,11 @@ const Header = () => {
             <span>hello gust</span>
             <span>Sign In</span>
           </div>
-          <div className="header__nav__item">
-            <span>hello gust</span>
-            <span>Sign In</span>
-          </div>
-          <div className="header__nav__item">
+          <div className="header__nav__item not_allow">
             <span>Returns</span>
             <span>& Orders</span>
           </div>
-          <div className="header__nav__item">
+          <div className="header__nav__item not_allow">
             <span>Your</span>
             <span>Prime</span>
           </div>{" "}

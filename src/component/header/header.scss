@@ -78,3 +78,9 @@ $main_color:white;
         }
     }
 }
+
+.not_allow {
+    &:hover {
+        cursor: not-allowed;
+    }
+}

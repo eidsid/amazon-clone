@@ -27,8 +27,17 @@ export const FilterProductsCat = (category) => async (dispatch) => {
 export const FilterProductsSearch = (SearchText) => async (dispatch) => {
   try {
     const data = await Fetchproducts;
-    let filterd = data.data.filter((item) => item.includes(SearchText));
-    dispatch({ type: "FILTER_BY_SEARCH", filterd });
+    let filterd = data.data.filter((item) => {
+      if (
+        item.description.toLowerCase().includes(SearchText.toLowerCase()) ||
+        item.category.toLowerCase().includes(SearchText.toLowerCase()) ||
+        item.title.toLowerCase().includes(SearchText.toLowerCase())
+      ) {
+        return item;
+      }
+    });
+    console.log(filterd);
+    dispatch({ type: "FILTER_BY_PRICE", payload: filterd });
   } catch (error) {
     console.log(error.message);
   }

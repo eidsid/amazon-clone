@@ -47,6 +47,9 @@ $main_color:white;
         @include flex();
         justify-content: space-evenly;
         @include hover();
+         :hover {
+            cursor: not-allowed;
+        }
         .arrow-icon {
             transform: scaleX(1.4);
         }

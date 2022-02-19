@@ -19,7 +19,7 @@ const Subheader = (props) => {
   return (
     <header className="sub-header">
       <div className="bars">
-        <Menu />
+        <Menu onClick={props.showSideHeaderfun} />
         all
       </div>
       <div className="sub-header__nav">{links}</div>

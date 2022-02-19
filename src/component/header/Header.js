@@ -1,25 +1,39 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import "./header.scss";
+
 import logo from "./Logo.png";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import SearchIcon from "@mui/icons-material/Search";
-import "./header.scss";
+
 import Subheader from "./sub_header/Subheader";
 import Subtitles from "./subtitles/Subtitles";
-import { Link } from "react-router-dom";
+import SiderHeader from "./sidheader/SideHeader";
+
 import useFetch from "../../setup/FetchAPI/Fetchapi";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+
 import {
   FilterProductsSearch,
   FilterProductsCat,
+  FilterProductsPrice,
 } from "../../setup/actions/Products";
 const Header = () => {
   let titles = useFetch("https://fakestoreapi.com/products/categories");
 
-  const [subtitles, setsubtitles] = useState(["ALL"]);
+  const [subtitles, setsubtitles] = useState(["ALLProducts"]);
+
   const dispatch = useDispatch();
-  let filterProducts = (title) => {
-    dispatch(FilterProductsCat(title));
-    add_subtitles(title);
+  let filterProducts = (value) => {
+    if (isNaN(value)) {
+      dispatch(FilterProductsCat(value));
+      add_subtitles(value);
+      console.log(value);
+    } else {
+      dispatch(FilterProductsPrice(value));
+      console.log(value);
+    }
   };
 
   let add_subtitles = (title) => {
@@ -34,6 +48,10 @@ const Header = () => {
 
   let handelSearchChange = (e) => {
     dispatch(FilterProductsSearch(e.target.value));
+  };
+  const [showsideHeader, setshowsideHeader] = useState(false);
+  let showSideHeaderfun = () => {
+    setshowsideHeader(!showsideHeader);
   };
 
   return (
@@ -71,8 +89,18 @@ const Header = () => {
           </Link>
         </div>
       </header>{" "}
-      <Subheader titles={titles} filterProducts={filterProducts} />
+      <Subheader
+        titles={titles}
+        filterProducts={filterProducts}
+        showSideHeaderfun={showSideHeaderfun}
+      />
       {setsubtitlesDom}
+      <SiderHeader
+        titles={titles}
+        filterProducts={filterProducts}
+        showsideHeader={showsideHeader}
+        showSideHeaderfun={showSideHeaderfun}
+      />
     </>
   );
 };

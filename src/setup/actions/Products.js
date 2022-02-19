@@ -14,7 +14,7 @@ export const FilterProductsCat = (category) => async (dispatch) => {
   try {
     const data = await Fetchproducts;
     let filterd;
-    if (category === "ALL") {
+    if (category === "ALLProducts") {
       filterd = data.data;
     } else {
       filterd = data.data.filter((item) => item.category === category);
@@ -46,7 +46,8 @@ export const FilterProductsPrice = (price) => async (dispatch) => {
   try {
     const data = await Fetchproducts;
     let filterd = data.data.filter((item) => item.price < price);
-    dispatch({ type: "FILTER_BY_PRICE", filterd });
+    console.log(filterd);
+    dispatch({ type: "FILTER_BY_PRICE", payload: filterd });
   } catch (error) {
     console.log(error.message);
   }

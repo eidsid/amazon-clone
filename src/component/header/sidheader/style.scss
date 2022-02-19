@@ -1,0 +1,66 @@
+$bgcolor:#ffffff;
+$acountBgColor:#232f3e;
+$mainColor:#232f3e;
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    color: $mainColor;
+    transition: transform ease-in-out 1s;
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100vh;
+        background-color: $bgcolor;
+        .close {
+            position: absolute;
+            left: 100%;
+            color: #ffffff;
+            z-index: 1;
+            font-size: 3rem;
+            cursor: pointer;
+        }
+        .account,
+        .lang {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .account {
+            background-color: $acountBgColor;
+            color: white;
+            padding: 1rem;
+            font-size: 1.5rem;
+        }
+        .list {
+            margin: 1rem 0;
+            list-style-type: none;
+            line-height: 2.4rem;
+            .title {
+                padding: 0 1rem;
+            }
+            li {
+                cursor: pointer;
+                padding: 0 1rem;
+                &:hover {
+                    background-color: #232f3e38;
+                }
+            }
+        }
+    }
+    &.active {
+        transform: translateX(0);
+        transition: background-color ease-in-out 0.3s;
+        background-color: #333333a6;
+    }
+    &.disActive {
+        transform: translateX(-100%);
+        transition: transform ease-in-out 1s;
+        background-color: none;
+    }
+}

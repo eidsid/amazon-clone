@@ -8,6 +8,7 @@
     width: 100%;
     min-width: 100px;
     max-width: 300px;
+    max-height: 350px;
     background-color: white;
     .product__info {
         margin-bottom: 15px;
@@ -16,6 +17,8 @@
         }
         &__rating {
             margin: 5px;
+            display: flex;
+            justify-content: space-between;
         }
         &__image {
             width: 100%;

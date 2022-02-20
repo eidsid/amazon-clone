@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -25,15 +25,16 @@ const Header = () => {
   const [subtitles, setsubtitles] = useState(["ALLProducts"]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let filterProducts = (value) => {
     if (isNaN(value)) {
       dispatch(FilterProductsCat(value));
       add_subtitles(value);
-      console.log(value);
     } else {
       dispatch(FilterProductsPrice(value));
-      console.log(value);
     }
+
+    navigate("/");
   };
 
   let add_subtitles = (title) => {

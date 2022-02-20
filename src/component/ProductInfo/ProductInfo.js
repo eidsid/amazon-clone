@@ -11,7 +11,9 @@ const ProdcutInfo = () => {
   let products = useFetch(api);
   const product = products.filter((product) => product.id === Number(id))[0];
 
-  const addToBaskt = () => {};
+  const addToBaskt = () => {
+    console.log("ok welcome");
+  };
   const buyfunc = () => {};
   return product ? (
     <div className="prod " id={product.id}>

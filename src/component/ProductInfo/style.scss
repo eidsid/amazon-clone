@@ -23,8 +23,10 @@ $fav_color: rgb(6, 180, 180);
             img {
                 width: 60px;
                 padding: 0.5rem;
-                box-shadow: #ffd814 0 0 2px 4px;
                 cursor: pointer;
+                &:hover {
+                    box-shadow: #f3680b 0 0 1px 2px;
+                }
             }
         }
         img {
@@ -119,6 +121,15 @@ $fav_color: rgb(6, 180, 180);
                 }
             }
         }
+    }
+}
+
+@media (max-width:1300px) {
+    .prod {
+        flex-direction: column;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0 2rem;
     }
 }
 

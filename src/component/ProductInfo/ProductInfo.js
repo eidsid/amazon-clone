@@ -17,7 +17,14 @@ const ProdcutInfo = () => {
   const buyfunc = () => {};
   return product ? (
     <div className="prod " id={product.id}>
-      <img src={product.image} alt="lab image" className="prod__image" />
+      <div className="images">
+        <div className="minImages">
+          <img src={product.image} alt="lab image" />
+          <img src={product.image} alt="lab image" />
+          <img src={product.image} alt="lab image" />
+        </div>
+        <img src={product.image} alt="lab image" />
+      </div>
       <div className="prod__info">
         <p className="prod__info__cat">Brand: {product.category} </p>
         <p className="prod__info__title"> {product.title} </p>

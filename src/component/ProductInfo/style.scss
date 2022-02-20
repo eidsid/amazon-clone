@@ -28,7 +28,6 @@ $fav_color: rgb(6, 180, 180);
             margin-bottom: 1rem;
         }
         &__rating {
-            max-width: 300px;
             @include flex(row);
             .rateCount {
                 color: $fav_color;
@@ -59,7 +58,8 @@ $fav_color: rgb(6, 180, 180);
     }
     &__process {
         padding: 1rem;
-        max-width: 200px;
+        max-width: 350px;
+        min-width: 200px;
         .favcolor {
             color: $fav_color;
         }

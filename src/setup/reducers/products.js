@@ -8,6 +8,8 @@ const actions = (products = [], action) => {
       return action.payload;
     case "FILTER_BY_PRICE":
       return action.payload;
+    case "FILTER_BY_ID":
+      return action.payload;
     default:
       return products;
   }

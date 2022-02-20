@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getItems } from "./setup/actions/Baskt";
 import { getProducts } from "./setup/actions/Products";
+import ProdcutInfo from "./component/ProductInfo/ProductInfo";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="info/:id" element={<ProdcutInfo />} />
       </Routes>
     </BrowserRouter>
   );

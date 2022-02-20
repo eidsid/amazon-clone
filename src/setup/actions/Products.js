@@ -52,3 +52,13 @@ export const FilterProductsPrice = (price) => async (dispatch) => {
     console.log(error.message);
   }
 };
+export const FilterProductsID = (id) => async (dispatch) => {
+  try {
+    const data = await Fetchproducts;
+    let product = data.data.filter((item) => item.id === id);
+
+    dispatch({ type: "FILTER_BY_ID", payload: product });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

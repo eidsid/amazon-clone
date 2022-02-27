@@ -12,7 +12,7 @@ export const getItems = () => async (dispatch) => {
 export const ADD_ITEM = (item) => async (dispatch) => {
   try {
     const { data } = api.createItem(item);
-    dispatch({ type: "CREATE_POST", payload: data });
+    dispatch({ type: "ADD_PRODUCT", payload: data });
   } catch (error) {
     console.log(error.message);
   }
@@ -20,7 +20,7 @@ export const ADD_ITEM = (item) => async (dispatch) => {
 export const deleteItem = (id) => async (dispatch) => {
   try {
     await api.deleteItem(id);
-    dispatch({ type: "DELETE_POST", payload: id });
+    dispatch({ type: "DELETE_PRODUCT", payload: id });
   } catch (error) {
     console.log(error.message);
   }

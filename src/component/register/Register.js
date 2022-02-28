@@ -3,10 +3,12 @@ import "./style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, createUser, db } from "../../setup/firbase";
 
-const Register = () => {
+const Register = (props) => {
   const [username, setusername] = useState("");
   const [Password, setPassword] = useState("");
   const navigate = useNavigate();
+  if (props.user) navigate("/");
+
   const Register = async (e) => {
     e.preventDefault();
     if (

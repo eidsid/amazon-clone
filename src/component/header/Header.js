@@ -70,10 +70,10 @@ const Header = () => {
           <SearchIcon className="header__search__Icon" />
         </div>
         <div className="header__nav">
-          <div className="header__nav__item">
+          <Link to="/login" className="header__nav__item">
             <span>hello gust</span>
             <span>Sign In</span>
-          </div>
+          </Link>
           <div className="header__nav__item not_allow">
             <span>Returns</span>
             <span>& Orders</span>

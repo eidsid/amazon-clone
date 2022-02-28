@@ -1,4 +1,7 @@
 import { initializeApp } from "firebase/app";
+import { Database } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: "AIzaSyC_dtbWA43Bu3TkSvX7AK1CpbjyjuAH0xw",
   authDomain: "clone-27335.firebaseapp.com",
@@ -8,4 +11,10 @@ const firebaseConfig = {
   appId: "1:44504415463:web:71a68a8b2a1b72a5b83642",
 };
 
-export default app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const createUser = createUserWithEmailAndPassword;
+
+const db = new Database();
+
+export { auth, createUser, db };

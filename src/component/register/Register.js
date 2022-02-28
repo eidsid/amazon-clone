@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, createUser, db } from "../../setup/firbase";
+import { auth, createUser } from "../../setup/firbase";
 
 const Register = (props) => {
   const [username, setusername] = useState("");

@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
 import "./header.scss";
 
 import logo from "./Logo.png";
@@ -19,7 +18,8 @@ import {
   FilterProductsCat,
   FilterProductsPrice,
 } from "../../setup/actions/Products";
-const Header = () => {
+const Header = (props) => {
+  console.log(props.user);
   let titles = useFetch("https://fakestoreapi.com/products/categories");
 
   const [subtitles, setsubtitles] = useState(["ALLProducts"]);

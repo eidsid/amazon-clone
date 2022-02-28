@@ -1,12 +1,13 @@
 import { useState } from "react";
 import "./style.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, loginUser } from "../../setup/firbase";
-const Login = () => {
+import { auth, createUser, db } from "../../setup/firbase";
+
+const Register = () => {
   const [username, setusername] = useState("");
   const [Password, setPassword] = useState("");
   const navigate = useNavigate();
-  const login = async (e) => {
+  const Register = async (e) => {
     e.preventDefault();
     if (
       username !== "" &&
@@ -14,11 +15,11 @@ const Login = () => {
       Password.length > 7 &&
       Password !== ""
     ) {
-      await loginUser(auth, username, Password)
+      await createUser(auth, username, Password)
         .then((user) => {
-          console.log(user);
           if (user) {
-            navigate("/");
+            console.log(user);
+            navigate("/login");
           }
           // ...
         })
@@ -29,8 +30,8 @@ const Login = () => {
   };
   return (
     <div className="login__ontainer">
-      <form onSubmit={login}>
-        <h2>Sign in</h2>
+      <form onSubmit={Register}>
+        <h2>Register</h2>
         <div className="form__control">
           <label htmlFor="email">E-mail</label>
           <input
@@ -49,19 +50,15 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button>Sign in</button>
+        <button>Register</button>
       </form>
       <div className="addition">
-        <p>
-          By sign in amazon you agree to Amazon Fake Conditions of use & sale
-          ,Please see our Privacy Notice our Cookies Notice and our
-          interset-Based Ads notice
-        </p>
-        <Link to={"/register"}>
-          <button>Create your Amazon Account</button>
+        <p>have an account ?</p>
+        <Link to={"/login"}>
+          <button>Login</button>
         </Link>
       </div>
     </div>
   );
 };
-export default Login;
+export default Register;

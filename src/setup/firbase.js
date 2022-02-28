@@ -4,6 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -19,7 +20,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const createUser = createUserWithEmailAndPassword;
 const loginUser = signInWithEmailAndPassword;
-
+const logout = signOut;
 const db = new Database();
 
-export { auth, loginUser, createUser, db };
+export { auth, loginUser, createUser, logout, db };

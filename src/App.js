@@ -12,8 +12,9 @@ import Register from "./component/register/Register";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./setup/firbase";
 function App() {
-  const [userInfo, setuserInfo] = useState({});
+  const [userInfo, setuserInfo] = useState();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getItems());
     dispatch(getProducts());
@@ -21,10 +22,10 @@ function App() {
       if (user) {
         setuserInfo(user);
       } else {
-        console.log("no user");
+        setuserInfo();
       }
     });
-  }, [dispatch]);
+  }, [dispatch, userInfo]);
 
   return (
     <BrowserRouter>

@@ -18,8 +18,9 @@ import {
   FilterProductsCat,
   FilterProductsPrice,
 } from "../../setup/actions/Products";
+import { logout, auth } from "../../setup/firbase";
+
 const Header = (props) => {
-  console.log(props.user);
   let titles = useFetch("https://fakestoreapi.com/products/categories");
 
   const [subtitles, setsubtitles] = useState(["ALLProducts"]);
@@ -54,6 +55,10 @@ const Header = (props) => {
   let showSideHeaderfun = () => {
     setshowsideHeader(!showsideHeader);
   };
+  const handelSignout = async () => {
+    await logout(auth);
+    console.log("loged out");
+  };
 
   return (
     <>
@@ -70,10 +75,17 @@ const Header = (props) => {
           <SearchIcon className="header__search__Icon" />
         </div>
         <div className="header__nav">
-          <Link to="/login" className="header__nav__item">
-            <span>hello gust</span>
-            <span>Sign In</span>
-          </Link>
+          {!props.user ? (
+            <Link to="/login" className="header__nav__item">
+              <span>hello gust</span>
+              <span>Sign In</span>
+            </Link>
+          ) : (
+            <div className="header__nav__item">
+              <span>hello user</span>
+              <span onClick={handelSignout}>logout</span>
+            </div>
+          )}
           <div className="header__nav__item not_allow">
             <span>Returns</span>
             <span>& Orders</span>
@@ -97,6 +109,8 @@ const Header = (props) => {
       />
       {setsubtitlesDom}
       <SiderHeader
+        user={props.user}
+        handelSignout={handelSignout}
         titles={titles}
         filterProducts={filterProducts}
         showsideHeader={showsideHeader}

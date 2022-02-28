@@ -2,6 +2,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LanguageIcon from "@mui/icons-material/Language";
 import CloseIcon from "@mui/icons-material/Close";
 import "./style.scss";
+import { Link } from "react-router-dom";
 
 const SiderHeader = (props) => {
   let links = props.titles.map((title) => {
@@ -34,7 +35,19 @@ const SiderHeader = (props) => {
         <CloseIcon className="close" onClick={props.showSideHeaderfun} />
         <div className="account">
           <AccountCircleIcon sx={{ fontSize: 40 }} />
-          <div className="heade_title">Hello ,Sign in</div>
+          <div className="heade_title">
+            {!props.user ? (
+              <Link to="/login" className="header__nav__item">
+                <span>hello gust</span>
+                <span>Sign In</span>
+              </Link>
+            ) : (
+              <div className="header__nav__item">
+                <span>hello user</span>
+                <span onClick={props.handelSignout}>logout</span>
+              </div>
+            )}
+          </div>
         </div>
         <ul className="list">
           <h2 className="title">Trending</h2>

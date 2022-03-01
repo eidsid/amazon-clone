@@ -35,14 +35,14 @@ const SiderHeader = (props) => {
         <CloseIcon className="close" onClick={props.showSideHeaderfun} />
         <div className="account">
           <AccountCircleIcon sx={{ fontSize: 40 }} />
-          <div className="heade_title">
+          <div className="heade_login">
             {!props.user ? (
-              <Link to="/login" className="header__nav__item">
+              <Link to="/login" className="item">
                 <span>hello gust</span>
                 <span>Sign In</span>
               </Link>
             ) : (
-              <div className="header__nav__item">
+              <div className="item">
                 <span>hello user</span>
                 <span onClick={props.handelSignout}>logout</span>
               </div>

@@ -1,6 +1,6 @@
-$bgcolor:#ffffff;
-$acountBgColor:#232f3e;
-$mainColor:#232f3e;
+$bgcolor: #ffffff;
+$acountBgColor: #232f3e;
+$mainColor: #232f3e;
 .container {
     position: fixed;
     top: 0;
@@ -36,6 +36,11 @@ $mainColor:#232f3e;
             color: white;
             padding: 1rem;
             font-size: 1.5rem;
+            .heade_login>.item {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+            }
         }
         .list {
             margin: 1rem 0;

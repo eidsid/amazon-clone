@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
+import { ADD_ITEM } from "../../setup/actions/Baskt";
 import "./style.scss";
+import { useDispatch } from "react-redux";
+
 const Prodcut = ({
   id,
   title,
@@ -9,7 +12,13 @@ const Prodcut = ({
   description,
   category,
 }) => {
-  const addToBaskt = () => {};
+  const dispatch = useDispatch();
+  const addToBaskt = () => {
+    console.log("item add");
+    dispatch(
+      ADD_ITEM({ id, title, image, price, rating, description, category })
+    );
+  };
   return (
     <div className="product" id={id}>
       <Link to={`info/${id}`} className="linke">

@@ -2,8 +2,8 @@ import * as api from "../api/Baskt";
 
 export const getItems = () => async (dispatch) => {
   try {
-    const { data } = await api.getItems();
-
+    // const { data } = await api.getItems();
+    const data = [];
     dispatch({ type: "FETCH_ALL", payload: data });
   } catch (error) {
     console.log(error.message);
@@ -11,16 +11,18 @@ export const getItems = () => async (dispatch) => {
 };
 export const ADD_ITEM = (item) => async (dispatch) => {
   try {
-    const { data } = api.createItem(item);
-    dispatch({ type: "ADD_PRODUCT", payload: data });
+    // const { data } = api.createItem(item);
+    dispatch({ type: "ADD_ITEM", payload: item });
+    console.log(item);
   } catch (error) {
     console.log(error.message);
   }
 };
-export const deleteItem = (id) => async (dispatch) => {
+export const REMOVE_ITEM = (id) => async (dispatch) => {
   try {
-    await api.deleteItem(id);
-    dispatch({ type: "DELETE_PRODUCT", payload: id });
+    // const { data } = api.createItem(item);
+    console.log(id);
+    dispatch({ type: "REMOVE_ITEM", payload: id });
   } catch (error) {
     console.log(error.message);
   }

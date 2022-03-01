@@ -1,8 +1,47 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { REMOVE_ITEM } from "../../setup/actions/Baskt";
 import Subtotal from "../subtotal/Subtotal";
 import "./checkout.scss";
 const Checkout = () => {
-  //  const items = useSelector((state) => state.Baskt);
+  const items = useSelector((state) => state.Baskt);
+  const [allPrice, setallPrice] = useState(0);
+
+  const getAllPrice = () => {
+    let price = 0;
+    items.forEach((item) => (price += item.price));
+    setallPrice(price);
+  };
+
+  useEffect(() => {
+    getAllPrice();
+  }, [items]);
+
+  const dispatch = useDispatch();
+
+  const removeItem = (id) => {
+    dispatch(REMOVE_ITEM(id));
+  };
+  const itemsDom = items.map((item, index) => {
+    console.log(item.price);
+    return (
+      <div className="product" key={index}>
+        <div className="product__info">
+          <p> {item.title} </p>
+          <p className="product__info__price">
+            <strong> $ {item.price} </strong>
+          </p>
+          <div className="product__info__rating">
+            <p> {"⭐".repeat(item.rating.rate)}</p>
+            <p>{item.rating.count} rateting</p>
+          </div>
+          <img src={item.image} alt=" image" className="product__info__image" />
+        </div>
+
+        <button onClick={() => removeItem(item.id)}> remove item </button>
+      </div>
+    );
+  });
 
   return (
     <div className="checkout">
@@ -13,9 +52,10 @@ const Checkout = () => {
           alt="ad image"
         />
         <h2 className="checkout__left__title">Your shopping Basket</h2>
+        {itemsDom}
       </div>
       <div className="checkout__right">
-        <Subtotal />
+        <Subtotal allPrice={allPrice} allProduct={items.length} />
       </div>
     </div>
   );

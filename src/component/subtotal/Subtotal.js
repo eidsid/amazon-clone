@@ -1,8 +1,8 @@
 import "./subtotal.scss";
 
-const Subtotal = () => {
-  let total = 0;
-  let totalPrice = 0;
+const Subtotal = (props) => {
+  let total = props.allProduct;
+  let totalPrice = props.allPrice;
   return (
     <div className="subtotal">
       <p>

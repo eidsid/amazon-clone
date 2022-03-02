@@ -5,14 +5,17 @@ import LoopIcon from "@mui/icons-material/Loop";
 
 import "./style.scss";
 import { Email, Facebook, Pinterest, Twitter } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { ADD_ITEM } from "../../setup/actions/Baskt";
 const ProdcutInfo = () => {
   const { id } = useParams();
 
   let products = useFetch(api);
   const product = products.filter((product) => product.id === Number(id))[0];
 
+  const dispatch = useDispatch();
   const addToBaskt = () => {
-    console.log("ok welcome");
+    dispatch(ADD_ITEM(product));
   };
   const buyfunc = () => {};
   return product ? (

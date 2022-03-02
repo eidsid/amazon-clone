@@ -10,6 +10,7 @@
     max-width: 300px;
     max-height: 350px;
     background-color: white;
+    animation: 1s ease-in-out productAnim;
     .linke {
         text-decoration: none;
     }
@@ -37,5 +38,32 @@
         border-color: #a88734 #9c7e31 #846a29;
         color: #111;
         cursor: pointer;
+    }
+}
+
+@keyframes productAnim {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    20% {
+        opacity: 0.2;
+        transform: scale(0.2);
+    }
+    40% {
+        opacity: 0.4;
+        transform: scale(0.4);
+    }
+    60% {
+        opacity: 0.6;
+        transform: scale(0.6);
+    }
+    80% {
+        opacity: 0.8;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }

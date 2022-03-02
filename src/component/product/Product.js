@@ -27,7 +27,7 @@ const Prodcut = ({
 
   return (
     <div className={`product anim${randomNum === 0 ? 1 : randomNum}`} id={id}>
-      <Link to={`info/${id}`} className="linke">
+      <Link to={`/info/${id}`} className="linke">
         <div className="product__info">
           <p> {title} </p>
           <p className="product__info__price">

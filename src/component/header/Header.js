@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./header.scss";
 
 import logo from "./Logo.png";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+
+import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 
 import Subheader from "./sub_header/Subheader";
@@ -22,7 +23,7 @@ import { logout, auth } from "../../setup/firbase";
 
 const Header = (props) => {
   let titles = useFetch("https://fakestoreapi.com/products/categories");
-
+  const BasktItems = useSelector((state) => state.Baskt);
   const [subtitles, setsubtitles] = useState(["ALLProducts"]);
 
   const dispatch = useDispatch();
@@ -96,8 +97,8 @@ const Header = (props) => {
           </div>{" "}
           <Link to="/checkout" className="link">
             <div className="header__nav__item">
-              <ShoppingBasketIcon className="__icon" />
-              <span id="shoppingCount">0</span>
+              <ShoppingCart className="__icon" />
+              <span>{BasktItems.length}</span>
             </div>
           </Link>
         </div>

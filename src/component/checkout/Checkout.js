@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { REMOVE_ITEM } from "../../setup/actions/Baskt";
 import Subtotal from "../subtotal/Subtotal";
 import "./checkout.scss";
@@ -26,18 +27,23 @@ const Checkout = () => {
     console.log(item.price);
     return (
       <div className="product" key={index}>
-        <div className="product__info">
-          <p> {item.title} </p>
-          <p className="product__info__price">
-            <strong> $ {item.price} </strong>
-          </p>
-          <div className="product__info__rating">
-            <p> {"⭐".repeat(item.rating.rate)}</p>
-            <p>{item.rating.count} rateting</p>
+        <Link to={`/info/${item.id}`} className="linke">
+          <div className="product__info">
+            <p> {item.title} </p>
+            <p className="product__info__price">
+              <strong> $ {item.price} </strong>
+            </p>
+            <div className="product__info__rating">
+              <p> {"⭐".repeat(item.rating.rate)}</p>
+              <p>{item.rating.count} rateting</p>
+            </div>
+            <img
+              src={item.image}
+              alt=" image"
+              className="product__info__image"
+            />
           </div>
-          <img src={item.image} alt=" image" className="product__info__image" />
-        </div>
-
+        </Link>
         <button onClick={() => removeItem(item.id)}> remove item </button>
       </div>
     );

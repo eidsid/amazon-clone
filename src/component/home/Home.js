@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   let products = useSelector((state) => state.Products);
+
   let productsDom = products.map((item, index) => {
     return <Prodcut {...item} key={index} />;
   });

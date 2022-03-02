@@ -3,6 +3,27 @@
     background-color: white;
     padding: 1%;
     &__left {
+        .item {
+            position: relative;
+            min-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            >* {
+                margin: 1rem;
+                display: inline-block;
+            }
+            .col {
+                display: inherit;
+                gap: 1rem;
+            }
+            .price {
+                margin-right: 1rem;
+                font-size: larger;
+            }
+            img {
+                width: 100px;
+            }
+        }
         &__adimg {
             width: 100%;
         }

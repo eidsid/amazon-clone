@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ADD_ITEM } from "../../setup/actions/Baskt";
 import "./style.scss";
 import { useDispatch } from "react-redux";
-
+import { useEffect, useState } from "react";
 const Prodcut = ({
   id,
   title,
@@ -14,13 +14,19 @@ const Prodcut = ({
 }) => {
   const dispatch = useDispatch();
   const addToBaskt = () => {
-    console.log("item add");
     dispatch(
       ADD_ITEM({ id, title, image, price, rating, description, category })
     );
   };
+  const [randomNum, setRandomNum] = useState(1);
+
+  useEffect(() => {
+    const renadomNum = Math.floor(Math.random() * 4);
+    setRandomNum(renadomNum);
+  }, [description]);
+
   return (
-    <div className="product" id={id}>
+    <div className={`product anim${randomNum === 0 ? 1 : randomNum}`} id={id}>
       <Link to={`info/${id}`} className="linke">
         <div className="product__info">
           <p> {title} </p>

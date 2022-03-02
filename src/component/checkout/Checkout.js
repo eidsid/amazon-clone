@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { REMOVE_ITEM } from "../../setup/actions/Baskt";
+import Prodcut from "../product/Product";
 import Subtotal from "../subtotal/Subtotal";
 import "./checkout.scss";
 const Checkout = () => {
   const items = useSelector((state) => state.Baskt);
+  let products = useSelector((state) => state.Products);
+
   const [allPrice, setallPrice] = useState(0);
 
   const getAllPrice = () => {
@@ -13,7 +16,7 @@ const Checkout = () => {
     items.forEach((item) => (price += item.price));
     setallPrice(price);
   };
-
+  const recomendedItems = products.map((item) => <Prodcut {...item} />);
   useEffect(() => {
     getAllPrice();
   }, [items]);
@@ -26,26 +29,25 @@ const Checkout = () => {
   const itemsDom = items.map((item, index) => {
     console.log(item.price);
     return (
-      <div className="product" key={index}>
-        <Link to={`/info/${item.id}`} className="linke">
-          <div className="product__info">
-            <p> {item.title} </p>
-            <p className="product__info__price">
-              <strong> $ {item.price} </strong>
-            </p>
-            <div className="product__info__rating">
-              <p> {"⭐".repeat(item.rating.rate)}</p>
-              <p>{item.rating.count} rateting</p>
+      <>
+        <div className="item" key={index}>
+          <div className="col">
+            <Link to={`/info/${item.id}`} className="linke">
+              <img src={item.image} alt=" image" className="image" />
+            </Link>
+            <div className="info">
+              <p> {item.title} </p>
+              <p>in stack</p>
+              <p>Eligible for FREE delivery</p>
+              <button onClick={() => removeItem(item.id)}> remove item </button>
             </div>
-            <img
-              src={item.image}
-              alt=" image"
-              className="product__info__image"
-            />
           </div>
-        </Link>
-        <button onClick={() => removeItem(item.id)}> remove item </button>
-      </div>
+          <p className="price">
+            <strong> $ {item.price} </strong>
+          </p>
+        </div>
+        <hr />
+      </>
     );
   });
 
@@ -62,6 +64,7 @@ const Checkout = () => {
       </div>
       <div className="checkout__right">
         <Subtotal allPrice={allPrice} allProduct={items.length} />
+        {items.length ? recomendedItems : ""}
       </div>
     </div>
   );

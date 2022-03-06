@@ -83,7 +83,7 @@ const Header = (props) => {
             </Link>
           ) : (
             <div className="header__nav__item">
-              <span>hello user</span>
+              <span>hello {props.user.email.substr(0, 3)}</span>
               <span onClick={handelSignout}>logout</span>
             </div>
           )}

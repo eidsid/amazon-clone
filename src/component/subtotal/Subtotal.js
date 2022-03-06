@@ -1,5 +1,5 @@
 import "./subtotal.scss";
-
+import { Link } from "react-router-dom";
 const Subtotal = (props) => {
   let total = props.allProduct;
   let totalPrice = props.allPrice;
@@ -9,7 +9,9 @@ const Subtotal = (props) => {
         {" "}
         <span>Subtotal({total} items) </span>:<strong> $ {totalPrice}</strong>
       </p>
-      <button>procesed to checkedout</button>
+      <button>
+        <Link to="/payment">procesed to checkedout</Link>
+      </button>
     </div>
   );
 };

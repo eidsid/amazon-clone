@@ -11,6 +11,7 @@ import Login from "./component/login/Login";
 import Register from "./component/register/Register";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./setup/firbase";
+import Payment from "./component/payment/Payment";
 function App() {
   const [userInfo, setuserInfo] = useState();
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
         <Route exact path="/register" element={<Register user={userInfo} />} />
         <Route path="checkout" element={<Checkout user={userInfo} />} />
         <Route path="info/:id" element={<ProdcutInfo />} />
+        <Route path="/payment" element={<Payment user={userInfo} />} />
       </Routes>
     </BrowserRouter>
   );

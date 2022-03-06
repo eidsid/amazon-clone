@@ -1,0 +1,72 @@
+@mixin flex($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+$BGcolor: white;
+.checkCount {
+    text-align: center;
+    padding: 1rem;
+    span {
+        color: rgb(153, 7, 158);
+        font-weight: 400;
+    }
+}
+
+.paymentContainer {
+    background-color: $BGcolor;
+    min-height: 100vh;
+    >*:not(hr) {
+        max-width: 500px;
+        padding: 1rem;
+        @include flex();
+        >span {
+            font-weight: 800;
+        }
+    }
+    .productsSection {
+        .product {
+            @include flex();
+            min-width: 500px;
+            img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    }
+    .paymentMothed {
+        min-width: 100%;
+        >div {
+            @include flex(column);
+            >span {
+                font-weight: 600;
+            }
+        }
+        .cardInfo {
+            @include flex();
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+        .order {
+            @include flex(column);
+            border: 1px solid rgb(153, 153, 153);
+            padding: 1rem;
+            margin: 2rem auto;
+            width: 300px;
+            >* {
+                width: 100%;
+                &:is(span) {
+                    padding: 2px;
+                    font-weight: 600;
+                }
+                &:is(button) {
+                    background-color: rgb(255, 208, 0);
+                    padding: 2px;
+                }
+            }
+        }
+    }
+}

@@ -1,17 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./component/header/Header";
-import Home from "./component/home/Home";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./setup/firbase";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import Checkout from "./component/checkout/Checkout";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getItems } from "./setup/actions/Baskt";
 import { getProducts } from "./setup/actions/Products";
+
+import Header from "./component/header/Header";
+import Home from "./component/home/Home";
 import ProdcutInfo from "./component/ProductInfo/ProductInfo";
 import Login from "./component/login/Login";
 import Register from "./component/register/Register";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./setup/firbase";
 import Payment from "./component/payment/Payment";
+
+const promise = loadStripe(
+  "pk_test_51JwvitJSSyNgmcbH31X5qiVWlHICk0Uto3Vn1b0h4ij3u23qh35R71sr5VpJJlOhQDMex6uHoul7iRTh8LGwtSmy00Ynbl8eUH"
+);
+
 function App() {
   const [userInfo, setuserInfo] = useState();
   const dispatch = useDispatch();
@@ -37,7 +45,14 @@ function App() {
         <Route exact path="/register" element={<Register user={userInfo} />} />
         <Route path="checkout" element={<Checkout user={userInfo} />} />
         <Route path="info/:id" element={<ProdcutInfo />} />
-        <Route path="/payment" element={<Payment user={userInfo} />} />
+        <Route
+          path="/payment"
+          element={
+            <Elements stripe={promise}>
+              <Payment user={userInfo} />
+            </Elements>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

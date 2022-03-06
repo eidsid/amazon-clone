@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./style.scss";
 
 const Payment = (props) => {
@@ -38,6 +39,23 @@ const Payment = (props) => {
     );
   });
 
+  const [Carderrors, setCarderrors] = useState(null);
+  const [disabled, setdisabled] = useState(true);
+
+  const stripe = useStripe();
+  const elements = useElements();
+  const handelChange = (e) => {
+    setdisabled(
+      (Carderrors.length === 0) & (e.empity === false) ? true : false
+    );
+    console.log(e.error);
+    setCarderrors(e.error.message);
+  };
+
+  const handelSubmit = (e) => {
+    console.log(e);
+  };
+
   return (
     <>
       <div className="checkCount">
@@ -49,7 +67,7 @@ const Payment = (props) => {
         <div className="address__info">
           <span>Delivery Address</span>
           <div>
-            <p>{props.user.email}</p>
+            <p>{props.user.email ? props.user.email : ""}</p>
             <p>adress1</p>
             <p>adress2</p>
           </div>
@@ -66,12 +84,16 @@ const Payment = (props) => {
             <span>Card Details</span>
             <div>
               <div className="cardInfo">
-                <p>Card Number</p>
-                <p>MM/YY/CVC</p>
+                <form onSubmit={handelSubmit}>
+                  <CardElement onChange={handelChange} />
+                </form>
+                <p className="errors">
+                  {Carderrors !== null ? Carderrors : <></>}
+                </p>
               </div>
               <div className="order">
                 <span>Order Total: ${totalCost}</span>
-                <button>Buy Now</button>
+                <button disabled={disabled}>Buy Now</button>
               </div>
             </div>
           </div>

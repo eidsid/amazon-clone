@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./style.scss";
+import axios from "axios";
 
 const Payment = (props) => {
   const Baskt = useSelector((state) => state.Baskt);
@@ -39,23 +40,47 @@ const Payment = (props) => {
     );
   });
 
-  const [Carderrors, setCarderrors] = useState(null);
+  const [Carderrors, setCarderrors] = useState("");
   const [disabled, setdisabled] = useState(true);
+  const [processing, setprocessing] = useState("");
+  const [succeeded, setsucceeded] = useState(false);
+  const [clientSecret, setclientSecret] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
   const handelChange = (e) => {
-    setdisabled(
-      (Carderrors.length === 0) & (e.empity === false) ? true : false
-    );
-    console.log(e.error);
-    setCarderrors(e.error.message);
+    setCarderrors(e.error ? e.error.message : "");
+    setdisabled(!e.empity & e.complete & (Carderrors === "") ? false : true);
   };
 
-  const handelSubmit = (e) => {
-    console.log(e);
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    setprocessing(true);
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        // paymentIntent= payment conformation
+        setsucceeded(true);
+        setprocessing(null);
+        setCarderrors(null);
+        Navigate("/orders");
+      });
   };
-
+  useEffect(() => {
+    //  generate the epecial tripe secret which alows us to charge acustomer
+    const getClientSecret = async () => {
+      const response = await axios({
+        mothed: "post",
+        url: `/payment/create?total=${totalCost * 100}`,
+      });
+      setclientSecret(response.data.clientSecret);
+    };
+    getClientSecret();
+  }, [Baskt]);
   return (
     <>
       <div className="checkCount">
@@ -86,14 +111,14 @@ const Payment = (props) => {
               <div className="cardInfo">
                 <form onSubmit={handelSubmit}>
                   <CardElement onChange={handelChange} />
+                  <p className="errors">{Carderrors}</p>
+                  <div className="order">
+                    <span>Order Total: ${totalCost}</span>
+                    <button disabled={disabled || processing || succeeded}>
+                      <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                    </button>
+                  </div>{" "}
                 </form>
-                <p className="errors">
-                  {Carderrors !== null ? Carderrors : <></>}
-                </p>
-              </div>
-              <div className="order">
-                <span>Order Total: ${totalCost}</span>
-                <button disabled={disabled}>Buy Now</button>
               </div>
             </div>
           </div>

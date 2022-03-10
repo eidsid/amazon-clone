@@ -1,7 +1,6 @@
-const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
-const stripe = require("stripe")(
+const stripe = require("strip-js")(
   "sk_test_51JwvitJSSyNgmcbH3IzDtzpeHeiYCQki89HL3JSC6gwBIN6Edwxd2l11pQhG6TFRUY21FMSKorymjUjgJcDWKHmb004v8Zxbqq"
 );
 const app = express();
@@ -28,5 +27,5 @@ app.post("/payments/create", async (req, res) => {
     clientSecret: paymentIntet.client_secret,
   });
 });
-// http://localhost:5001/clone-27335/us-central1/api
-exports.api = functions.https.onRequest(app);
+// exports.api = functions.https.onRequest(app);
+module.exports = { app };

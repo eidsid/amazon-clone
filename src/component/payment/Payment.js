@@ -8,19 +8,11 @@ import axios from "axios";
 const Payment = (props) => {
   const Baskt = useSelector((state) => state.Baskt);
   const [products, setproducts] = useState(Baskt);
-  const [totalCost, settotalCost] = useState(0);
   const removeItem = (id) => {
     // console.log(id);
     setproducts((products) => products.filter((item) => item.id !== id));
     console.log(products);
   };
-
-  useEffect(() => {
-    let price = 0;
-    products.forEach((item) => (price += item.price));
-    settotalCost(price);
-  }, [products]);
-
   const itemsDom = products.map((item, index) => {
     return (
       <div className="product" key={index}>
@@ -50,7 +42,7 @@ const Payment = (props) => {
   const elements = useElements();
   const handelChange = (e) => {
     setCarderrors(e.error ? e.error.message : "");
-    setdisabled(!e.empity & e.complete & (Carderrors === "") ? false : true);
+    setdisabled(!e.empity & e.complete & !Carderrors ? false : true);
   };
 
   const handelSubmit = async (e) => {
@@ -70,17 +62,22 @@ const Payment = (props) => {
         Navigate("/orders");
       });
   };
+  let price = 0;
   useEffect(() => {
+    price =
+      products.length > 0
+        ? products.map((item) => item.price).reduce((p, c) => p + c)
+        : 1;
     //  generate the epecial tripe secret which alows us to charge acustomer
     const getClientSecret = async () => {
-      const response = await axios({
-        mothed: "post",
-        url: `/payment/create?total=${totalCost * 100}`,
-      });
+      const response = await axios.post(
+        "http://localhost:5001/clone-27335/us-central1/api/payments/create?total",
+        { total: price * 1000 }
+      );
       setclientSecret(response.data.clientSecret);
     };
     getClientSecret();
-  }, [Baskt]);
+  }, [Baskt, products]);
   return (
     <>
       <div className="checkCount">
@@ -113,7 +110,7 @@ const Payment = (props) => {
                   <CardElement onChange={handelChange} />
                   <p className="errors">{Carderrors}</p>
                   <div className="order">
-                    <span>Order Total: ${totalCost}</span>
+                    <span>Order Total: ${price}</span>
                     <button disabled={disabled || processing || succeeded}>
                       <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                     </button>

@@ -1,9 +1,32 @@
 const functions = require("firebase-functions");
+const express = require("express");
+const cors = require("cors");
+const stripe = require("stripe")(
+  "sk_test_51JwvitJSSyNgmcbH3IzDtzpeHeiYCQki89HL3JSC6gwBIN6Edwxd2l11pQhG6TFRUY21FMSKorymjUjgJcDWKHmb004v8Zxbqq"
+);
+const app = express();
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+app.use(express.json());
+app.use(cors({ origin: true }));
+
+app.get("/", (req, res) => {
+  console.log("welcome");
+
+  res.status(200).send("welcome backend");
+});
+app.post("/payments/create", async (req, res) => {
+  console.log("working");
+  const total = req.body.total;
+
+  console.log("payment request resive Bom!!! for this amount>>>>", total);
+  const paymentIntet = await stripe.paymentIntents.create({
+    amount: total,
+    currency: "usd",
+  });
+  console.log(paymentIntet.client_secret);
+  res.status(201).send({
+    clientSecret: paymentIntet.client_secret,
+  });
+});
+// http://localhost:5001/clone-27335/us-central1/api
+exports.api = functions.https.onRequest(app);

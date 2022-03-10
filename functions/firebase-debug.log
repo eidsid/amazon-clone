@@ -1,0 +1,41 @@
+[debug] [2022-03-10T12:47:37.210Z] ----------------------------------------------------------------------
+[debug] [2022-03-10T12:47:37.212Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\eidsi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2022-03-10T12:47:37.213Z] CLI Version:   10.1.5
+[debug] [2022-03-10T12:47:37.213Z] Platform:      win32
+[debug] [2022-03-10T12:47:37.213Z] Node Version:  v16.14.0
+[debug] [2022-03-10T12:47:37.214Z] Time:          Thu Mar 10 2022 14:47:37 GMT+0200 (Eastern European Standard Time)
+[debug] [2022-03-10T12:47:37.214Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-10T12:47:37.299Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-10T12:47:37.299Z] > authorizing via signed-in user (eidsiddiedis@gmail.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[warn] !  emulators: It seems that you are running multiple instances of the emulator suite for project clone-27335. This may result in unexpected behavior. 
+[debug] [2022-03-10T12:47:37.349Z] [hub] writing locator at C:\Users\eidsi\AppData\Local\Temp\hub-clone-27335.json
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, firestore, database, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, firestore, database, pubsub, storage\u001b[22m"}}
+[info] +  functions: Using node@16 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Using node@16 from host."}}
+[debug] [2022-03-10T12:47:37.679Z] defaultcredentials: writing to file C:\Users\eidsi\AppData\Roaming\firebase\eidsiddiedis_gmail_com_application_default_credentials.json
+[debug] [2022-03-10T12:47:37.681Z] Setting GAC to C:\Users\eidsi\AppData\Roaming\firebase\eidsiddiedis_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\eidsi\\AppData\\Roaming\\firebase\\eidsiddiedis_gmail_com_application_default_credentials.json"}}
+[debug] [2022-03-10T12:47:37.685Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/clone-27335/adminSdkConfig [none]
+[debug] [2022-03-10T12:47:38.035Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/clone-27335/adminSdkConfig 200
+[debug] [2022-03-10T12:47:38.035Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/clone-27335/adminSdkConfig {"projectId":"clone-27335","storageBucket":"clone-27335.appspot.com"}
+[debug] [2022-03-10T12:47:38.081Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/clone-27335/sites 
+[debug] [2022-03-10T12:47:38.991Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/clone-27335/sites 200
+[debug] [2022-03-10T12:47:38.991Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/clone-27335/sites {"sites":[{"name":"projects/44504415463/sites/clone-27335","defaultUrl":"https://clone-27335.web.app","appId":"1:44504415463:web:71a68a8b2a1b72a5b83642","type":"DEFAULT_SITE"}]}
+[debug] [2022-03-10T12:47:38.991Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/clone-27335/webApps/1:44504415463:web:71a68a8b2a1b72a5b83642/config [none]
+[debug] [2022-03-10T12:47:39.879Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/clone-27335/webApps/1:44504415463:web:71a68a8b2a1b72a5b83642/config 200
+[debug] [2022-03-10T12:47:39.880Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/clone-27335/webApps/1:44504415463:web:71a68a8b2a1b72a5b83642/config {"projectId":"clone-27335","appId":"1:44504415463:web:71a68a8b2a1b72a5b83642","storageBucket":"clone-27335.appspot.com","apiKey":"AIzaSyC_dtbWA43Bu3TkSvX7AK1CpbjyjuAH0xw","authDomain":"clone-27335.firebaseapp.com","messagingSenderId":"44504415463"}
+[info] i  hosting: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[warn] !  ui: Emulator UI unable to start on port 4000, starting on 4002 instead. {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI unable to start on port 4000, starting on 4002 instead."}}
+[debug] [2022-03-10T12:47:39.978Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-03-10T12:47:39.978Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-03-10T12:47:39.978Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\eidsi\\.cache\\firebase\\emulators\\ui-v1.6.4\\server.bundle.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\eidsi\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.6.4\\\\server.bundle.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2022-03-10T12:47:40.129Z] Web / API server started at localhost:4002
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at localhost:4002\n"}}
+[info] i  functions: Watching "G:\deve lap\ReactJS\amazon-clone\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"G:\\deve lap\\ReactJS\\amazon-clone\\functions\" for Cloud Functions..."}}
+[debug] [2022-03-10T12:47:40.279Z] [worker-pool] addWorker(~diagnostic~) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(~diagnostic~)"}}
+[debug] [2022-03-10T12:47:40.279Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key ~diagnostic~, total=1"}}
+[debug] [2022-03-10T12:47:40.279Z] [worker-pool] submitWork(triggerId=) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitWork(triggerId=)"}}
+[debug] [2022-03-10T12:47:40.279Z] [worker-~diagnostic~-d9ded9e8-aa4a-408c-9d04-2e225126a580]: Assigning socketPath: \\?\pipe\G:\deve lap\ReactJS\amazon-clone\functions\10392 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-~diagnostic~-d9ded9e8-aa4a-408c-9d04-2e225126a580]: Assigning socketPath: \\\\?\\pipe\\G:\\deve lap\\ReactJS\\amazon-clone\\functions\\10392"}}
+[debug] [2022-03-10T12:47:40.280Z] [worker-~diagnostic~-d9ded9e8-aa4a-408c-9d04-2e225126a580]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-~diagnostic~-d9ded9e8-aa4a-408c-9d04-2e225126a580]: BUSY"}}

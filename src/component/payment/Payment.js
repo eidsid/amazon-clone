@@ -63,9 +63,9 @@ const Payment = (props) => {
         Navigate("/orders");
       });
   };
-  let price = 0;
+
   useEffect(() => {
-    price =
+    let price =
       products.length > 0
         ? products.map((item) => item.price).reduce((p, c) => p + c)
         : 1;
@@ -79,7 +79,7 @@ const Payment = (props) => {
       setclientSecret(response.data.clientSecret);
     };
     getClientSecret();
-  }, [products]);
+  }, [products, TotalCost]);
   return (
     <>
       <div className="checkCount">

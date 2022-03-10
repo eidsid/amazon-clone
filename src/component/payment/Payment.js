@@ -8,6 +8,7 @@ import axios from "axios";
 const Payment = (props) => {
   const Baskt = useSelector((state) => state.Baskt);
   const [products, setproducts] = useState(Baskt);
+  const [TotalCost, setTotalCost] = useState(null);
   const removeItem = (id) => {
     // console.log(id);
     setproducts((products) => products.filter((item) => item.id !== id));
@@ -68,16 +69,17 @@ const Payment = (props) => {
       products.length > 0
         ? products.map((item) => item.price).reduce((p, c) => p + c)
         : 1;
+    setTotalCost(price);
     //  generate the epecial tripe secret which alows us to charge acustomer
     const getClientSecret = async () => {
       const response = await axios.post(
         "http://localhost:5001/clone-27335/us-central1/api/payments/create?total",
-        { total: price * 1000 }
+        { total: Math.floor(TotalCost) * 1000 }
       );
       setclientSecret(response.data.clientSecret);
     };
     getClientSecret();
-  }, [Baskt, products]);
+  }, [products]);
   return (
     <>
       <div className="checkCount">
@@ -110,7 +112,7 @@ const Payment = (props) => {
                   <CardElement onChange={handelChange} />
                   <p className="errors">{Carderrors}</p>
                   <div className="order">
-                    <span>Order Total: ${price}</span>
+                    <span>Order Total: ${TotalCost}</span>
                     <button disabled={disabled || processing || succeeded}>
                       <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                     </button>

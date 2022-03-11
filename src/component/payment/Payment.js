@@ -9,6 +9,7 @@ const Payment = (props) => {
   const Baskt = useSelector((state) => state.Baskt);
   const [products, setproducts] = useState(Baskt);
   const [TotalCost, setTotalCost] = useState(null);
+
   const removeItem = (id) => {
     // console.log(id);
     setproducts((products) => products.filter((item) => item.id !== id));
@@ -66,25 +67,32 @@ const Payment = (props) => {
       });
   };
 
-  useEffect(() => {
+  const editCost = () => {
     let price =
       products.length > 0
         ? products.map((item) => item.price).reduce((p, c) => p + c)
         : 1;
     setTotalCost(price);
+  };
+
+  const getClientSecret = async () => {
+    const response = await axios.post(
+      "http://localhost:10000/payments/create",
+      { total: TotalCost * 1000 }
+    );
+
+    setclientSecret(response.data.clientSecret);
+    console.log(clientSecret);
+  };
+  useEffect(() => {
+    setInterval(() => {
+      console.log("update");
+    }, 1000);
+    editCost();
     //  generate the epecial tripe secret which alows us to charge acustomer
-
-    const getClientSecret = async () => {
-      const response = await axios.post(
-        "http://localhost:10000/payments/create",
-        { total: TotalCost * 1000 }
-      );
-
-      setclientSecret(response.data.clientSecret);
-      console.log(clientSecret);
-    };
     getClientSecret();
-  }, [TotalCost, products]);
+  }, [products]);
+
   return (
     <>
       <div className="checkCount">

@@ -42,6 +42,8 @@ const Payment = (props) => {
   const stripe = useStripe();
   const elements = useElements();
   const handelChange = (e) => {
+    console.log(clientSecret);
+
     setCarderrors(e.error ? e.error.message : "");
     setdisabled(!e.empity & e.complete & !Carderrors ? false : true);
   };
@@ -71,15 +73,18 @@ const Payment = (props) => {
         : 1;
     setTotalCost(price);
     //  generate the epecial tripe secret which alows us to charge acustomer
+
     const getClientSecret = async () => {
       const response = await axios.post(
-        "http://localhost:5001/clone-27335/us-central1/api/payments/create?total",
-        { total: Math.floor(TotalCost) * 1000 }
+        "http://localhost:10000/payments/create",
+        { total: TotalCost * 1000 }
       );
+
       setclientSecret(response.data.clientSecret);
+      console.log(clientSecret);
     };
     getClientSecret();
-  }, [products, TotalCost]);
+  }, [TotalCost, products]);
   return (
     <>
       <div className="checkCount">

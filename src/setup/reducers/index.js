@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 import Baskt from "./Baskt";
 import Products from "./products";
-
-export default combineReducers({ Baskt, Products });
+import user from "./user";
+export default combineReducers({ Baskt, Products, user });

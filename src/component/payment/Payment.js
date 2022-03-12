@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
@@ -5,15 +6,15 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./style.scss";
 import axios from "axios";
 
-const Payment = (props) => {
+const Payment = () => {
+  const user = useSelector((state) => state.user);
+
   const Baskt = useSelector((state) => state.Baskt);
   const [products, setproducts] = useState(Baskt);
   const [TotalCost, setTotalCost] = useState(null);
 
   const removeItem = (id) => {
-    // console.log(id);
     setproducts((products) => products.filter((item) => item.id !== id));
-    console.log(products);
   };
   const itemsDom = products.map((item, index) => {
     return (
@@ -43,8 +44,6 @@ const Payment = (props) => {
   const stripe = useStripe();
   const elements = useElements();
   const handelChange = (e) => {
-    console.log(clientSecret);
-
     setCarderrors(e.error ? e.error.message : "");
     setdisabled(!e.empity & e.complete & !Carderrors ? false : true);
   };
@@ -67,31 +66,27 @@ const Payment = (props) => {
       });
   };
 
-  const editCost = () => {
-    let price =
-      products.length > 0
-        ? products.map((item) => item.price).reduce((p, c) => p + c)
-        : 1;
-    setTotalCost(price);
-  };
-
-  const getClientSecret = async () => {
-    const response = await axios.post(
-      "http://localhost:10000/payments/create",
-      { total: TotalCost * 1000 }
-    );
-
-    setclientSecret(response.data.clientSecret);
-    console.log(clientSecret);
-  };
   useEffect(() => {
-    setInterval(() => {
-      console.log("update");
-    }, 1000);
+    const editCost = () => {
+      let price =
+        products.length > 0
+          ? products.map((item) => item.price).reduce((p, c) => p + c)
+          : 1;
+      setTotalCost(price);
+    };
     editCost();
     //  generate the epecial tripe secret which alows us to charge acustomer
-    getClientSecret();
-  }, [products]);
+    const getClientSecret = async () => {
+      const response = await axios.post(
+        "https://amazon-cloneweb.herokuapp.com/payments/create",
+        { total: TotalCost * 1000 }
+      );
+      setclientSecret(response.data.clientSecret);
+    };
+    if (TotalCost > 0) {
+      getClientSecret();
+    }
+  }, [products, TotalCost]);
 
   return (
     <>
@@ -104,7 +99,7 @@ const Payment = (props) => {
         <div className="address__info">
           <span>Delivery Address</span>
           <div>
-            <p>{props.user.email ? props.user.email : ""}</p>
+            <p>{user ? user.email : ""}</p>
             <p>adress1</p>
             <p>adress2</p>
           </div>
@@ -112,7 +107,9 @@ const Payment = (props) => {
         <hr />
         <div className="productsSection">
           <span>Review items and delivery</span>
-          <div className="products">{itemsDom}</div>
+          <div className="products">
+            {products.length ? itemsDom : <h1>no items</h1>}
+          </div>
         </div>
         <hr />
         <div className="paymentMothed">

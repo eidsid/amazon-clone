@@ -1,19 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./setup/firbase";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import Checkout from "./component/checkout/Checkout";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./setup/firbase";
+
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
 import { getItems } from "./setup/actions/Baskt";
 import { getProducts } from "./setup/actions/Products";
+import { getUser, setUser } from "./setup/actions/user";
 
 import Header from "./component/header/Header";
 import Home from "./component/home/Home";
 import ProdcutInfo from "./component/ProductInfo/ProductInfo";
 import Login from "./component/login/Login";
 import Register from "./component/register/Register";
+import Checkout from "./component/checkout/Checkout";
 import Payment from "./component/payment/Payment";
 
 const promise = loadStripe(
@@ -23,15 +27,16 @@ const promise = loadStripe(
 function App() {
   const [userInfo, setuserInfo] = useState();
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getItems());
     dispatch(getProducts());
+    dispatch(getUser());
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        dispatch(setUser(user));
         setuserInfo(user);
       } else {
-        setuserInfo();
+        dispatch(setUser(null));
       }
     });
   }, [dispatch, userInfo]);

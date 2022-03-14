@@ -23,18 +23,17 @@ import Orders from "./component/orders/Orders";
 const promise = loadStripe(
   "pk_test_51JwvitJSSyNgmcbH31X5qiVWlHICk0Uto3Vn1b0h4ij3u23qh35R71sr5VpJJlOhQDMex6uHoul7iRTh8LGwtSmy00Ynbl8eUH"
 );
-
 function App() {
   const [userInfo, setuserInfo] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getItems());
     dispatch(getProducts());
-    dispatch(getUser());
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // dispatch(setUser(user));
-        setuserInfo(user);
+        let userinfo = dispatch(getUser(user.uid));
+        setuserInfo(userinfo);
       } else {
         dispatch(setUser(null));
       }

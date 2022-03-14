@@ -3,7 +3,7 @@ import { db } from "../firbase";
 export const getItems = () => {};
 export const createItem = async (item) => {
   console.log(item);
-  const BasktRef = doc(db, "baskt/fristman");
+  const BasktRef = doc(db, "users/baskt");
   await setDoc(BasktRef, item);
   // .getDocs(user?.uid)
   // .collections("orders")

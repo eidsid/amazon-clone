@@ -33,7 +33,7 @@ function App() {
     dispatch(getUser());
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch(setUser(user));
+        // dispatch(setUser(user));
         setuserInfo(user);
       } else {
         dispatch(setUser(null));

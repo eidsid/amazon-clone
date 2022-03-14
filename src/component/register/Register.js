@@ -13,13 +13,12 @@ const Register = (props) => {
   const [userEmail, setuserEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [isprocess, setisprocess] = useState(false);
-  const [message, setmessage] = useState("");
+  const [Errors, setErrors] = useState("");
   const navigate = useNavigate();
   if (props.user) navigate("/");
   const dispatch = useDispatch();
 
   const Register = async (e) => {
-    setisprocess(true);
     e.preventDefault();
     if (
       userName !== "" &&
@@ -29,6 +28,7 @@ const Register = (props) => {
       Password.length > 7 &&
       Password !== ""
     ) {
+      setisprocess(true);
       await createUser(auth, userEmail, Password)
         .then(async (data) => {
           if (data) {
@@ -45,13 +45,24 @@ const Register = (props) => {
           navigate("/");
         })
         .catch((error) => {
-          console.log(error);
+          setErrors(
+            error.message.indexOf("auth/email-already-in-use") !== -1
+              ? "email already in use"
+              : "Some thing want wrong"
+          );
+
           setisprocess(false);
         });
+    } else {
+      setErrors("All Field must be filed");
     }
   };
+
   return (
     <div className="login__ontainer">
+      <div className={Errors ? "errorShow" : ""} onClick={() => setErrors("")}>
+        {Errors}
+      </div>
       <form onSubmit={Register}>
         <h2>Register</h2>
         <div className="form__control">

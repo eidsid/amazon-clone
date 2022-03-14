@@ -9,6 +9,17 @@
     background-color: aliceblue;
     margin: 2rem auto;
     padding: 2rem;
+    .errorShow {
+        text-align: center;
+        background-color: red;
+        border-radius: 13px;
+        padding: 1rem;
+        cursor: zoom-out;
+        color: aliceblue;
+        font-weight: 600;
+        font-size: 1.2rem;
+        transition: all ease-in-out 0.3s;
+    }
     >* {
         width: 100%;
     }
@@ -51,5 +62,8 @@
     }
     button {
         cursor: pointer;
+        &:disabled {
+            cursor: wait;
+        }
     }
 }

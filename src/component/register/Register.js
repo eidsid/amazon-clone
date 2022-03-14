@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, createUser } from "../../setup/firbase";
-
+import { doc, setDoc } from "firebase/firestore/lite";
+import { db } from "../../setup/firbase";
 const Register = (props) => {
   const [username, setusername] = useState("");
   const [Password, setPassword] = useState("");
@@ -35,6 +36,15 @@ const Register = (props) => {
       <form onSubmit={Register}>
         <h2>Register</h2>
         <div className="form__control">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            onChange={(e) => setusername(e.target.value)}
+          />
+        </div>
+        <div className="form__control">
           <label htmlFor="email">E-mail</label>
           <input
             type="email"
@@ -43,6 +53,7 @@ const Register = (props) => {
             onChange={(e) => setusername(e.target.value)}
           />
         </div>
+
         <div className="form__control">
           <label htmlFor="password">Password</label>
           <input

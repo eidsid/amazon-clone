@@ -19,7 +19,7 @@ import Login from "./component/login/Login";
 import Register from "./component/register/Register";
 import Checkout from "./component/checkout/Checkout";
 import Payment from "./component/payment/Payment";
-
+import Orders from "./component/orders/Orders";
 const promise = loadStripe(
   "pk_test_51JwvitJSSyNgmcbH31X5qiVWlHICk0Uto3Vn1b0h4ij3u23qh35R71sr5VpJJlOhQDMex6uHoul7iRTh8LGwtSmy00Ynbl8eUH"
 );
@@ -58,6 +58,7 @@ function App() {
             </Elements>
           }
         />
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </BrowserRouter>
   );

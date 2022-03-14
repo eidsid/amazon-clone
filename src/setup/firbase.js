@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { Database } from "firebase/database";
+import { getFirestore } from "firebase/firestore/lite";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -10,6 +11,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyC_dtbWA43Bu3TkSvX7AK1CpbjyjuAH0xw",
   authDomain: "clone-27335.firebaseapp.com",
+  databaseURL: "https://clone-27335-default-rtdb.firebaseio.com/",
   projectId: "clone-27335",
   storageBucket: "clone-27335.appspot.com",
   messagingSenderId: "44504415463",
@@ -18,9 +20,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 const createUser = createUserWithEmailAndPassword;
 const loginUser = signInWithEmailAndPassword;
 const logout = signOut;
-const db = new Database();
 
 export { auth, loginUser, createUser, logout, db };

@@ -1,14 +1,16 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./style.scss";
 import axios from "axios";
-
 const Payment = () => {
   const user = useSelector((state) => state.user);
-
+  const navigate = useNavigate();
+  if (!user) {
+    navigate("/login");
+  }
   const Baskt = useSelector((state) => state.Baskt);
   const [products, setproducts] = useState(Baskt);
   const [TotalCost, setTotalCost] = useState(null);
@@ -20,7 +22,7 @@ const Payment = () => {
     return (
       <div className="product" key={index}>
         <Link to={`/info/${item.id}`} className="linke">
-          <img src={item.image} alt=" image" className="image" />
+          <img src={item.image} alt="image" className="image" />
         </Link>
         <div className="info">
           <p> {item.title} </p>
@@ -57,12 +59,20 @@ const Payment = () => {
           card: elements.getElement(CardElement),
         },
       })
-      .then(({ paymentIntent }) => {
-        // paymentIntent= payment conformation
+      .then(async ({ paymentIntent }) => {
+        // .getDocs(user?.uid)
+        // .collections("orders")
+        // .doc(paymentIntent.id)
+        // .set({
+        //   products: products,
+        //   amount: paymentIntent.amount,
+        //   created: paymentIntent.created,
+        // });
+
         setsucceeded(true);
         setprocessing(null);
         setCarderrors(null);
-        Navigate("/orders");
+        navigate("/orders");
       });
   };
 
@@ -78,7 +88,8 @@ const Payment = () => {
     //  generate the epecial tripe secret which alows us to charge acustomer
     const getClientSecret = async () => {
       const response = await axios.post(
-        "https://amazon-cloneweb.herokuapp.com/payments/create",
+        // "https://amazon-cloneweb.herokuapp.com/payments/create",
+        "localhost:10000/payments/create",
         { total: TotalCost * 1000 }
       );
       setclientSecret(response.data.clientSecret);

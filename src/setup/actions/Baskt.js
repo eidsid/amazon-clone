@@ -11,7 +11,8 @@ export const getItems = () => async (dispatch) => {
 };
 export const ADD_ITEM = (item) => async (dispatch) => {
   try {
-    // const { data } = api.createItem(item);
+    const { data } = api.createItem(item);
+    console.log(data);
     dispatch({ type: "ADD_ITEM", payload: item });
     console.log(item);
   } catch (error) {

@@ -10,7 +10,7 @@ import { Elements } from "@stripe/react-stripe-js";
 
 import { getItems } from "./setup/actions/Baskt";
 import { getProducts } from "./setup/actions/Products";
-import { getUser, setUser } from "./setup/actions/user";
+import { getUser, Logout } from "./setup/actions/user";
 
 import Header from "./component/header/Header";
 import Home from "./component/home/Home";
@@ -24,7 +24,6 @@ const promise = loadStripe(
   "pk_test_51JwvitJSSyNgmcbH31X5qiVWlHICk0Uto3Vn1b0h4ij3u23qh35R71sr5VpJJlOhQDMex6uHoul7iRTh8LGwtSmy00Ynbl8eUH"
 );
 function App() {
-  const [userInfo, setuserInfo] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getItems());
@@ -32,28 +31,27 @@ function App() {
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        let userinfo = dispatch(getUser(user.uid));
-        setuserInfo(userinfo);
+        dispatch(getUser(user.uid));
       } else {
-        dispatch(setUser(null));
+        dispatch(Logout());
       }
     });
-  }, [dispatch, userInfo]);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
-      <Header user={userInfo} />
+      <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/login" element={<Login user={userInfo} />} />
-        <Route exact path="/register" element={<Register user={userInfo} />} />
-        <Route path="checkout" element={<Checkout user={userInfo} />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        <Route path="checkout" element={<Checkout />} />
         <Route path="info/:id" element={<ProdcutInfo />} />
         <Route
           path="/payment"
           element={
             <Elements stripe={promise}>
-              <Payment user={userInfo} />
+              <Payment />
             </Elements>
           }
         />

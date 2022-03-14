@@ -1,9 +1,9 @@
-export default (user = {}, action) => {
+export default (user = null, action) => {
   switch (action.type) {
-    case "GET_USER":
-      return action.payload;
     case "SET_USER":
       return action.payload;
+    case "LogOut":
+      return null;
     default:
       return user;
   }

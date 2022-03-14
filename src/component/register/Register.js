@@ -1,12 +1,11 @@
 import { useState } from "react";
-import "./style.scss";
-import { Link, useNavigate } from "react-router-dom";
-import { auth, createUser } from "../../setup/firbase";
-import { doc, setDoc } from "firebase/firestore/lite";
-import { db } from "../../setup/firbase";
-import { setUser } from "../../setup/actions/user";
-
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import "./style.scss";
+
+import { auth, createUser } from "../../setup/firbase";
+import { createDBUser } from "../../setup/actions/user";
 
 const Register = (props) => {
   const [userName, setuserName] = useState("");
@@ -32,13 +31,9 @@ const Register = (props) => {
       await createUser(auth, userEmail, Password)
         .then(async (data) => {
           if (data) {
-            const usersRef = doc(db, `users/${data.user.uid}`);
-
-            let userDetailse = { name: userName, email: data.user.email };
-
-            await setDoc(usersRef, userDetailse);
-
-            dispatch(setUser(userDetailse));
+            let userDetails = { name: userName, email: data.user.email };
+            console.log(data.user.uid);
+            dispatch(createDBUser(userDetails, data.user.uid));
           }
         })
         .then(() => {

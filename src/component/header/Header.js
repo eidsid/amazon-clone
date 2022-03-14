@@ -22,6 +22,9 @@ import {
 import { logout, auth } from "../../setup/firbase";
 
 const Header = (props) => {
+  const user = useSelector((state) => state.user);
+
+  console.log(user);
   let titles = useFetch("https://fakestoreapi.com/products/categories");
   const BasktItems = useSelector((state) => state.Baskt);
   const [subtitles, setsubtitles] = useState(["ALLProducts"]);
@@ -76,14 +79,14 @@ const Header = (props) => {
           <SearchIcon className="header__search__Icon" />
         </div>
         <div className="header__nav">
-          {!props.user ? (
+          {!user ? (
             <Link to="/login" className="header__nav__item">
               <span>hello gust</span>
               <span>Sign In</span>
             </Link>
           ) : (
             <div className="header__nav__item">
-              <span>hello {props.user.email.substr(0, 3)}</span>
+              <span>hello {user.name}</span>
               <span onClick={handelSignout}>logout</span>
             </div>
           )}
@@ -110,7 +113,7 @@ const Header = (props) => {
       />
       {setsubtitlesDom}
       <SiderHeader
-        user={props.user}
+        user={user ? user.name : user}
         handelSignout={handelSignout}
         titles={titles}
         filterProducts={filterProducts}

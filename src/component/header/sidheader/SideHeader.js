@@ -43,7 +43,7 @@ const SiderHeader = (props) => {
               </Link>
             ) : (
               <div className="item">
-                <span>hello {props.user.email.substr(0, 3)}</span>
+                <span>hello {props.user.split(" ").slice(0, 1)}</span>
                 <span onClick={props.handelSignout}>logout</span>
               </div>
             )}

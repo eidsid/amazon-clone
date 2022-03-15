@@ -35,10 +35,12 @@ export const ADD_ITEM = (userID, item) => async (dispatch) => {
 };
 export const REMOVE_ITEM = (id) => async (dispatch) => {
   try {
-    // const { data } = api.createItem(item);
-
     console.log(id);
-    dispatch({ type: "REMOVE_ITEM", payload: id });
+    const BakstRef = collection(db, `users/${id}/Baskt`);
+    const itemRef = doc(BakstRef, `id`);
+    await deleteDoc(itemRef).then(() => {
+      dispatch({ type: "REMOVE_ITEM", payload: id });
+    });
   } catch (error) {
     console.log(error.message);
   }

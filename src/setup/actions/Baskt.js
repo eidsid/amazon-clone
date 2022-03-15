@@ -14,21 +14,22 @@ export const createDBUser = (userDetails, id) => async (dispatch) => {
 };
 
 export const getItems = (id) => async (dispatch) => {
-  console.log(id);
   try {
-    const userinfoRef = doc(db, "users", `${id}/info/Bakst`);
-    const data = await getDocs(userinfoRef);
-
+    // const userinfoRef = doc(db, "users", `${id}/info/Bakst`);
+    // const data = await getDocs(userinfoRef);
+    let data = [];
     dispatch({ type: "FETCH_ALL", payload: data });
   } catch (error) {
     console.log(error.message);
   }
 };
 export const ADD_ITEM = (userID, item) => async (dispatch) => {
-  console.log(userID);
   try {
-    dispatch({ type: "ADD_ITEM", payload: "item" });
-    console.log(item);
+    const orderRef = collection(db, `users/${userID}/orders`);
+    const userinfoRef = doc(orderRef, `${item.id}`);
+    setDoc(userinfoRef, item).then(() => {
+      dispatch({ type: "ADD_ITEM", payload: item });
+    });
   } catch (error) {
     console.log(error.message);
   }

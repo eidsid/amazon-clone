@@ -33,10 +33,10 @@ export const ADD_ITEM = (userID, item) => async (dispatch) => {
     console.log(error.message);
   }
 };
-export const REMOVE_ITEM = (id) => async (dispatch) => {
+export const REMOVE_ITEM = (userID, id) => async (dispatch) => {
   try {
     console.log(id);
-    const BakstRef = collection(db, `users/${id}/Baskt`);
+    const BakstRef = collection(db, `users/${userID}/Baskt`);
     const itemRef = doc(BakstRef, `id`);
     await deleteDoc(itemRef).then(() => {
       dispatch({ type: "REMOVE_ITEM", payload: id });

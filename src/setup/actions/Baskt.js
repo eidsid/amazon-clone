@@ -24,7 +24,8 @@ export const getItems = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
-export const ADD_ITEM = (item) => async (dispatch) => {
+export const ADD_ITEM = (userID, item) => async (dispatch) => {
+  console.log(userID);
   try {
     dispatch({ type: "ADD_ITEM", payload: "item" });
     console.log(item);

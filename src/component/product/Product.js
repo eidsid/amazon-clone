@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ADD_ITEM } from "../../setup/actions/Baskt";
 import "./style.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 const Prodcut = ({
   id,
@@ -12,11 +12,20 @@ const Prodcut = ({
   description,
   category,
 }) => {
+  const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const addToBaskt = () => {
-    dispatch(
-      ADD_ITEM({ id, title, image, price, rating, description, category })
-    );
+    let product = {
+      id,
+      title,
+      image,
+      price,
+      rating,
+      description,
+      category,
+    };
+    dispatch(ADD_ITEM(user.userID, product));
   };
   const [randomNum, setRandomNum] = useState(1);
 

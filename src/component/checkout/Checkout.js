@@ -8,6 +8,7 @@ import "./checkout.scss";
 const Checkout = () => {
   const items = useSelector((state) => state.Baskt);
   let products = useSelector((state) => state.Products);
+  const user = useSelector((state) => state.user);
 
   const [allPrice, setallPrice] = useState(0);
 
@@ -24,7 +25,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
 
   const removeItem = (id) => {
-    dispatch(REMOVE_ITEM(id));
+    dispatch(REMOVE_ITEM(user.userID, id));
   };
   const itemsDom = items.map((item, index) => {
     console.log(item.price);

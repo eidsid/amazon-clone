@@ -3,7 +3,7 @@ import { db } from "../../setup/firbase";
 export const getUser = (id) => async (dispatch) => {
   const userinfoRef = doc(db, "users", `${id}/info/userDetails`);
   const userInfo = await getDoc(userinfoRef);
-  dispatch({ type: "SET_USER", payload: userInfo.data() });
+  dispatch({ type: "SET_USER", payload: { ...userInfo.data(), userID: id } });
 };
 
 export const createDBUser = (userDetails, id) => async (dispatch) => {

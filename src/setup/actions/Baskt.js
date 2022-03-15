@@ -15,17 +15,22 @@ export const createDBUser = (userDetails, id) => async (dispatch) => {
 
 export const getItems = (id) => async (dispatch) => {
   try {
-    // const userinfoRef = doc(db, "users", `${id}/info/Bakst`);
-    // const data = await getDocs(userinfoRef);
     let data = [];
-    dispatch({ type: "FETCH_ALL", payload: data });
+    const userinfoRef = collection(db, `users/${id}/Baskt`);
+    await getDocs(userinfoRef).then((docs) => {
+      docs.forEach((doc) => {
+        data.push(doc.data());
+      });
+    });
+    console.log(data);
+    dispatch({ type: "FETCH_ALL", payload: "data" });
   } catch (error) {
     console.log(error.message);
   }
 };
 export const ADD_ITEM = (userID, item) => async (dispatch) => {
   try {
-    const orderRef = collection(db, `users/${userID}/orders`);
+    const orderRef = collection(db, `users/${userID}/Baskt`);
     const userinfoRef = doc(orderRef, `${item.id}`);
     setDoc(userinfoRef, item).then(() => {
       dispatch({ type: "ADD_ITEM", payload: item });

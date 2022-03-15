@@ -26,12 +26,12 @@ const promise = loadStripe(
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getItems());
     dispatch(getProducts());
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(getUser(user.uid));
+        dispatch(getItems(user.uid));
       } else {
         dispatch(Logout());
       }

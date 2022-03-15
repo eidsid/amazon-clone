@@ -16,8 +16,7 @@ export const getItems = (id) => async (dispatch) => {
         data.push(doc.data());
       });
     });
-    console.log(data);
-    dispatch({ type: "FETCH_ALL", payload: "data" });
+    dispatch({ type: "FETCH_ALL", payload: data });
   } catch (error) {
     console.log(error.message);
   }

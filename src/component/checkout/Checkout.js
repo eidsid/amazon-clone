@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { REMOVE_ITEM } from "../../setup/actions/Baskt";
 import Prodcut from "../product/Product";
 import Subtotal from "../subtotal/Subtotal";
 import "./checkout.scss";
 const Checkout = () => {
   const items = useSelector((state) => state.Baskt);
+
   let products = useSelector((state) => state.Products);
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  if (!user) {
+    navigate("/");
+  }
 
   const [allPrice, setallPrice] = useState(0);
 
@@ -61,7 +67,7 @@ const Checkout = () => {
           alt="ad image"
         />
         <h2 className="checkout__left__title">Your shopping Basket</h2>
-        {itemsDom}
+        {items.length ? itemsDom : "no items"}
       </div>
       <div className="checkout__right">
         <Subtotal allPrice={allPrice} allProduct={items.length} />

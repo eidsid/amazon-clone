@@ -2,7 +2,7 @@ import {
   doc,
   setDoc,
   getDocs,
-  getDoc,
+  deleteDoc,
   collection,
 } from "firebase/firestore/lite";
 import { db } from "../../setup/firbase";

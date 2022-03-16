@@ -8,9 +8,11 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(async () => {
-    let orders = await getOrders(user.userID);
-    setOrders(orders);
-  }, [getOrders]);
+    if (user) {
+      let orders = await getOrders(user.userID);
+      setOrders(orders);
+    }
+  }, [getOrders, user]);
 
   let ordersDom = orders.map((order) => {
     let date = new Date(order.created);

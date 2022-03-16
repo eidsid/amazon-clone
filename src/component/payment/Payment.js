@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./style.scss";
 import axios from "axios";
+import { async } from "@firebase/util";
 const Payment = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -41,7 +42,6 @@ const Payment = () => {
   const [disabled, setdisabled] = useState(true);
   const [processing, setprocessing] = useState("");
   const [succeeded, setsucceeded] = useState(false);
-  const [clientSecret, setclientSecret] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -53,26 +53,25 @@ const Payment = () => {
   const handelSubmit = async (e) => {
     e.preventDefault();
     setprocessing(true);
-    const payload = await stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
+    //  generate the epecial tripe secret which alows us to charge acustomer
+    await axios
+      .post("https://amazon-cloneweb.herokuapp.com/payments/create", {
+        total: Math.floor(TotalCost * 1),
       })
-      .then(async ({ paymentIntent }) => {
-        // .getDocs(user?.uid)
-        // .collections("orders")
-        // .doc(paymentIntent.id)
-        // .set({
-        //   products: products,
-        //   amount: paymentIntent.amount,
-        //   created: paymentIntent.created,
-        // });
-
-        setsucceeded(true);
-        setprocessing(null);
-        setCarderrors(null);
-        navigate("/orders");
+      .then(async (data) => {
+        await stripe
+          .confirmCardPayment(data.data.clientSecret, {
+            payment_method: {
+              card: elements.getElement(CardElement),
+            },
+          })
+          .then(async ({ paymentIntent }) => {
+            console.log(paymentIntent);
+            setsucceeded(true);
+            setprocessing(null);
+            setCarderrors(null);
+            navigate("/orders");
+          });
       });
   };
 
@@ -85,18 +84,6 @@ const Payment = () => {
       setTotalCost(price);
     };
     editCost();
-    //  generate the epecial tripe secret which alows us to charge acustomer
-    const getClientSecret = async () => {
-      const response = await axios.post(
-        // "https://amazon-cloneweb.herokuapp.com/payments/create",
-        "localhost:10000/payments/create",
-        { total: TotalCost * 1000 }
-      );
-      setclientSecret(response.data.clientSecret);
-    };
-    if (TotalCost > 0) {
-      getClientSecret();
-    }
   }, [products, TotalCost]);
 
   return (

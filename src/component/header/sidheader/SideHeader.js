@@ -71,7 +71,6 @@ const SiderHeader = (props) => {
             <LanguageIcon className="icon" /> English
           </li>
           <li>Help</li>
-          <li>Sign in</li>
         </ul>
       </div>
     </div>

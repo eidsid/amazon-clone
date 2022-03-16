@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getOrders } from "../../setup/actions/orders";
+import OrdersProducts from "./ordersProducts/OrdersProducts";
+import "./style.scss";
 const Orders = () => {
   const user = useSelector((state) => state.user);
   const [orders, setOrders] = useState([]);
@@ -14,17 +16,21 @@ const Orders = () => {
     let date = new Date(order.created);
 
     return (
-      <div key={order.paymentID}>
-        <p>{order.paymentID}</p>
-        <p>{date.toLocaleDateString()}</p>
+      <div key={order.paymentID} className="order">
+        <OrdersProducts
+          products={order.products}
+          id={order.paymentID}
+          amount={order.Amount}
+          date={date.toLocaleDateString()}
+        />
       </div>
     );
   });
 
   return (
-    <div className="container0">
-      <h1>this is container of Orders</h1>
-      {ordersDom}
+    <div className="ordersContainer">
+      <h1> Orders</h1>
+      {orders ? ordersDom : "No orders"}
     </div>
   );
 };

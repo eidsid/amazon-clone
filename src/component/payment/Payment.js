@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./style.scss";
 import axios from "axios";
-import { async } from "@firebase/util";
+import { AddOrder } from "../../setup/actions/orders";
 const Payment = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -66,7 +66,12 @@ const Payment = () => {
             },
           })
           .then(async ({ paymentIntent }) => {
-            console.log(paymentIntent);
+            AddOrder(user.userID, {
+              paymentID: paymentIntent.id,
+              created: paymentIntent.created,
+              Amount: paymentIntent.amount,
+            });
+
             setsucceeded(true);
             setprocessing(null);
             setCarderrors(null);

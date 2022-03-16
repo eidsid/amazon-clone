@@ -50,6 +50,11 @@ $mainColor: #232f3e;
                 padding: 0 1rem;
             }
             li {
+                &.not_allow {
+                    &:hover {
+                        cursor: not-allowed;
+                    }
+                }
                 cursor: pointer;
                 padding: 0 1rem;
                 &:hover {
@@ -67,5 +72,18 @@ $mainColor: #232f3e;
         transform: translateX(-100%);
         transition: transform ease-in-out 1s;
         background-color: none;
+    }
+}
+
+@media (max-width: "1400px") {
+    .container {
+        .nav {
+            .list {
+                line-height: 1.4rem;
+                .title {
+                    font-size: 1rem;
+                }
+            }
+        }
     }
 }

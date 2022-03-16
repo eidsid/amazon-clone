@@ -66,9 +66,9 @@ const SiderHeader = (props) => {
         <hr />
         <ul className="list">
           <h2 className="title">Help & Settings </h2>
-          <li>Your Account</li>
-          <li className="lang">
-            <LanguageIcon className="icon" /> English
+          <li className="not_allow">Your Account</li>
+          <li className="lang not_allow ">
+            <LanguageIcon className="icon " /> English
           </li>
           <li>Help</li>
         </ul>

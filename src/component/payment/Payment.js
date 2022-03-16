@@ -67,6 +67,7 @@ const Payment = () => {
           })
           .then(async ({ paymentIntent }) => {
             AddOrder(user.userID, {
+              products,
               paymentID: paymentIntent.id,
               created: paymentIntent.created,
               Amount: paymentIntent.amount,

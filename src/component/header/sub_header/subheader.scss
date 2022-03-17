@@ -60,6 +60,7 @@ $main_color: white;
 @media (max-width: "850px") {
     .sub-header {
         font-weight: 400;
+        height: 60px;
         gap: 2rem;
         justify-content: flex-start;
         .start_selling {

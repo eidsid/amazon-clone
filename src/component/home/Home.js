@@ -2,6 +2,8 @@ import Prodcut from "../product/Product";
 import "./style.scss";
 import { useSelector } from "react-redux";
 
+import Loading from "../loadingIcon/Loading";
+
 const Home = () => {
   let products = useSelector((state) => state.Products);
 
@@ -17,7 +19,9 @@ const Home = () => {
         alt="home image"
       />
       <div className="home__container">
-        <div className="home__container__row">{productsDom}</div>
+        <div className="home__container__row">
+          {products.length ? productsDom : <Loading />}
+        </div>
       </div>
     </div>
   );

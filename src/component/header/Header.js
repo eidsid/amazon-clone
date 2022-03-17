@@ -90,7 +90,7 @@ const Header = (props) => {
               <span onClick={handelSignout}>logout</span>
             </div>
           )}
-          <Link to="/orders" className="header__nav__item lg">
+          <Link to="/orders" className="header__nav__item ">
             <span>Returns</span>
             <span>& Orders</span>
           </Link>

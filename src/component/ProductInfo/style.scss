@@ -1,5 +1,5 @@
 $fav_color: rgb(6, 180, 180);
-@mixin flex ($dir) {
+@mixin flex($dir) {
     display: flex;
     flex-direction: $dir;
     justify-content: space-between;
@@ -53,7 +53,7 @@ $fav_color: rgb(6, 180, 180);
         &__delivery {
             .price {
                 margin: 1rem 0;
-                @include flex( column);
+                @include flex(column);
                 font-size: 1.7rem;
             }
             .details {
@@ -62,7 +62,7 @@ $fav_color: rgb(6, 180, 180);
                 text-align: center;
                 .col {
                     img {
-                        opacity: .7;
+                        opacity: 0.7;
                         width: 50px;
                     }
                     p {
@@ -124,28 +124,11 @@ $fav_color: rgb(6, 180, 180);
     }
 }
 
-@media (max-width:1300px) {
+@media (max-width: 1300px) {
     .prod {
         flex-direction: column;
         width: fit-content;
         margin: 0 auto;
         padding: 0 2rem;
-    }
-}
-
-.loading {
-    position: fixed;
-    top: 49%;
-    left: 49%;
-    transform: scale(2);
-    animation: 2s infinite ease-in-out loadinganim;
-}
-
-@keyframes loadinganim {
-    0% {
-        transform: rotate(0)scale(1.5);
-    }
-    100% {
-        transform: rotate(1turn)scale(2);
     }
 }

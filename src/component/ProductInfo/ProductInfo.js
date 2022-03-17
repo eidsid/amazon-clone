@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
 import { api } from "../../setup/api/Products";
 import useFetch from "../../setup/FetchAPI/Fetchapi";
-import LoopIcon from "@mui/icons-material/Loop";
-
+import Loading from "../loadingIcon/Loading";
 import "./style.scss";
 import { Email, Facebook, Pinterest, Twitter } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
@@ -89,7 +88,7 @@ const ProdcutInfo = () => {
       </div>
     </div>
   ) : (
-    <LoopIcon className="loading" />
+    <Loading />
   );
 };
 

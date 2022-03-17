@@ -1,0 +1,16 @@
+.loading {
+    position: fixed;
+    top: 49%;
+    left: 49%;
+    transform: scale(2);
+    animation: 2s infinite ease-in-out loadinganim;
+}
+
+@keyframes loadinganim {
+    0% {
+        transform: rotate(0) scale(1.5);
+    }
+    100% {
+        transform: rotate(1turn) scale(2);
+    }
+}

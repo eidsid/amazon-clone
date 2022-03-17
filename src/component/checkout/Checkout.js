@@ -23,7 +23,11 @@ const Checkout = () => {
     items.forEach((item) => (price += item.price));
     setallPrice(price);
   };
-  const recomendedItems = products.map((item) => <Prodcut {...item} />);
+  const recomendedItems = products.map((item, index) => {
+    if (item.category == items[0].category && items.length >= index + 1) {
+      return <Prodcut {...item} key={item.id} />;
+    }
+  });
   useEffect(() => {
     getAllPrice();
   }, [items]);
@@ -36,8 +40,8 @@ const Checkout = () => {
   const itemsDom = items.map((item, index) => {
     console.log(item.price);
     return (
-      <>
-        <div className="item" key={index}>
+      <div key={index}>
+        <div className="item">
           <div className="col">
             <Link to={`/info/${item.id}`} className="linke">
               <img src={item.image} alt=" image" className="image" />
@@ -54,7 +58,7 @@ const Checkout = () => {
           </p>
         </div>
         <hr />
-      </>
+      </div>
     );
   });
 

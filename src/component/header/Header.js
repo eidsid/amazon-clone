@@ -90,11 +90,11 @@ const Header = (props) => {
               <span onClick={handelSignout}>logout</span>
             </div>
           )}
-          <Link to="/orders" className="header__nav__item">
+          <Link to="/orders" className="header__nav__item lg">
             <span>Returns</span>
             <span>& Orders</span>
           </Link>
-          <div className="header__nav__item not_allow">
+          <div className="header__nav__item not_allow lg">
             <span>Your</span>
             <span>Prime</span>
           </div>{" "}

@@ -86,3 +86,29 @@ $main_color: white;
         cursor: not-allowed;
     }
 }
+
+@media (max-width: "700px") {
+    .header {
+        position: relative;
+        justify-content: space-between;
+        height: 8rem;
+        align-items: flex-start;
+        .logo {
+            margin-top: 0.6rem;
+            padding: 0.4rem 0;
+        }
+        &__search {
+            position: absolute;
+            bottom: 1rem;
+            left: 3%;
+            width: 90%;
+        }
+        &__nav {
+            width: 60%;
+            justify-content: space-between;
+            &__item.lg {
+                display: none;
+            }
+        }
+    }
+}

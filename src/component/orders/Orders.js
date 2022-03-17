@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getOrders } from "../../setup/actions/orders";
+import Loading from "../loadingIcon/Loading";
 import OrdersProducts from "./ordersProducts/OrdersProducts";
 import "./style.scss";
 const Orders = () => {
@@ -32,7 +33,7 @@ const Orders = () => {
   return (
     <div className="ordersContainer">
       <h1> Orders</h1>
-      {orders ? ordersDom : "No orders"}
+      {orders.length ? ordersDom : <Loading />}
     </div>
   );
 };

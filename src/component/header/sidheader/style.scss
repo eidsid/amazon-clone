@@ -75,13 +75,16 @@ $mainColor: #232f3e;
     }
 }
 
-@media (max-width: "1400px") {
+@media (max-width: 1400px) {
     .container {
         .nav {
             .list {
-                line-height: 1.4rem;
+                line-height: 1.9rem;
+                font-weight: 600;
+                font-size: 1.3rem;
                 .title {
-                    font-size: 1rem;
+                    font-size: 1.5rem;
+                    margin-bottom: 0.3rem;
                 }
             }
         }

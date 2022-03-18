@@ -27,15 +27,8 @@ const Prodcut = ({
     };
     dispatch(ADD_ITEM(user.userID, product));
   };
-  const [randomNum, setRandomNum] = useState(1);
-
-  useEffect(() => {
-    const renadomNum = Math.floor(Math.random() * 4);
-    setRandomNum(renadomNum);
-  }, [description]);
-
   return (
-    <div className={`product anim${randomNum === 0 ? 1 : randomNum}`} id={id}>
+    <div className="product anim" id={id}>
       <Link to={`/info/${id}`} className="linke">
         <div className="product__info">
           <p> {title} </p>

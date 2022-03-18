@@ -1,0 +1,70 @@
+$TotopbgColor: #37475a;
+$bgColor: #232f3e;
+$CopyBGColor: #131a22;
+$main-color: rgba(238, 234, 234, 0.616);
+$Title-color: #fff;
+@mixin flex($dir) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer {
+    @include flex(column);
+    * {
+        width: 100%;
+        font-weight: 500;
+        color: $main-color;
+    }
+    >* {
+        padding: 1rem;
+    }
+    .title {
+        color: $Title-color;
+    }
+    a.Back-to-top {
+        font-size: 14px;
+        line-height: 20px;
+        background-color: $TotopbgColor;
+        padding: 20px;
+        text-align: center;
+        .BackToTop .BackToTopText {
+            color: $main-color;
+        }
+    }
+    &__Nav {
+        background-color: $bgColor;
+        @include flex(row);
+        flex-wrap: wrap;
+        align-items: flex-start;
+        .col {
+            margin: 1rem;
+            width: fit-content;
+            ul {
+                list-style-type: none;
+                li {
+                    margin-top: 0.5rem;
+                    width: fit-content;
+                    cursor: pointer;
+                    border-bottom: transparent 1px solid;
+                    &:hover {
+                        border-color: $main-color;
+                    }
+                }
+            }
+        }
+    }
+    .copy {
+        background-color: $CopyBGColor;
+        text-align: center;
+    }
+}
+
+@media (max-width: "700px") {
+    .footer {
+        >div {
+            padding: 0.5rem;
+        }
+    }
+}

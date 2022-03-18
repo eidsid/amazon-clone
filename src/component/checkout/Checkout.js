@@ -75,6 +75,7 @@ const Checkout = () => {
       </div>
       <div className="checkout__right">
         <Subtotal allPrice={allPrice} allProduct={items.length} />
+        <h4>Recomended</h4>
         {items.length ? recomendedItems : ""}
       </div>
     </div>

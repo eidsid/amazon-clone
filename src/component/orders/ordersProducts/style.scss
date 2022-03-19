@@ -35,3 +35,16 @@
         margin-bottom: 1rem;
     }
 }
+
+@media (max-width: "550px") {
+    .orders {
+        max-width: 350px;
+        >.info {
+            width: 100%;
+        }
+        .item {
+            transform: scale(0.75);
+            gap: 0.5rem;
+        }
+    }
+}

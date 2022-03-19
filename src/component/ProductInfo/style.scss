@@ -130,5 +130,10 @@ $fav_color: rgb(6, 180, 180);
         width: fit-content;
         margin: 0 auto;
         padding: 0 2rem;
+        .images {
+            >img {
+                width: 180px;
+            }
+        }
     }
 }

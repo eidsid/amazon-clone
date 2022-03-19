@@ -1,9 +1,12 @@
-.loading {
-    position: fixed;
-    top: 49%;
-    left: 49%;
-    transform: scale(2);
-    animation: 2s infinite ease-in-out loadinganim;
+.loadingContainer {
+    min-height: 80vh;
+    .loading {
+        position: fixed;
+        top: 49%;
+        left: 49%;
+        transform: scale(2);
+        animation: 2s infinite ease-in-out loadinganim;
+    }
 }
 
 @keyframes loadinganim {

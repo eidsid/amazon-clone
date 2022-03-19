@@ -30,7 +30,10 @@ $Title-color: #fff;
         padding: 20px;
         text-align: center;
         .BackToTop .BackToTopText {
-            color: $main-color;
+            color: $Title-color;
+        }
+        &:hover {
+            background-color: #55677c;
         }
     }
     &__Nav {

@@ -23,11 +23,13 @@ const Checkout = () => {
     items.forEach((item) => (price += item.price));
     setallPrice(price);
   };
-  const recomendedItems = products.map((item, index) => {
-    if (item.category == items[0].category && items.length >= index + 1) {
-      return <Prodcut {...item} key={item.id} />;
-    }
-  });
+  const recomendedItems = items.length
+    ? products.map((item, index) => {
+        if (item.category == items[0].category && items.length >= index + 1) {
+          return <Prodcut {...item} key={item.id} />;
+        }
+      })
+    : "";
   useEffect(() => {
     getAllPrice();
   }, [items]);

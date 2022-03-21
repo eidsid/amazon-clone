@@ -26,7 +26,7 @@ const Prodcut = ({
       category,
     };
     dispatch(ADD_ITEM(user.userID, product));
-    dispatch(AddNotifications("item add successed"));
+    dispatch(AddNotifications("item add to Basket successful"));
   };
   return (
     <div className="product anim" id={id}>

@@ -13,12 +13,10 @@ const Payment = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  if (!user) {
-    navigate("/login");
-  }
   const Baskt = useSelector((state) => state.Baskt);
   const [products, setproducts] = useState(Baskt);
   const [TotalCost, setTotalCost] = useState(null);
+  const [timeoutId, settimeoutId] = useState(null);
 
   const removeItem = (e, id) => {
     e.target.parentElement.parentElement.classList.add("close");
@@ -92,6 +90,17 @@ const Payment = () => {
   };
 
   useEffect(() => {
+    if (!user) {
+      let timeId = setTimeout(() => {
+        dispatch(
+          AddNotifications({ msg: "you shoud login frist", type: "error" })
+        );
+        navigate("/login");
+      }, 2000);
+      settimeoutId(timeId);
+    } else {
+      clearTimeout(timeoutId);
+    }
     const editCost = () => {
       let price =
         products.length > 0
@@ -100,7 +109,10 @@ const Payment = () => {
       setTotalCost(price);
     };
     editCost();
-  }, [products, TotalCost]);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [products, TotalCost, user]);
 
   return (
     <>

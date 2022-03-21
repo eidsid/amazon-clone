@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { REMOVE_ITEM } from "../../setup/actions/Baskt";
+import { AddNotifications } from "../../setup/actions/notification";
 import Prodcut from "../product/Product";
 import Subtotal from "../subtotal/Subtotal";
 import "./checkout.scss";
@@ -37,6 +38,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
 
   const removeItem = (id) => {
+    dispatch(AddNotifications("item removed from Basket successful"));
     dispatch(REMOVE_ITEM(user.userID, id));
   };
   const itemsDom = items.map((item, index) => {

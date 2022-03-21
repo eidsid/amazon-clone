@@ -5,6 +5,7 @@ import { RemoveNotifications } from "../../../setup/actions/notification";
 import "./style.scss";
 const Notification = (props) => {
   const [BarProgress, setBarProgress] = useState(0);
+  const [Pussed, setPussed] = useState(false);
   const [Close, setClose] = useState("");
   const dispatch = useDispatch();
   const deleteBtn = () => {
@@ -24,13 +25,20 @@ const Notification = (props) => {
         handelDelete();
       }
     }, 20);
+    if (Pussed) {
+      clearInterval(myInterval);
+    }
     return () => {
       clearInterval(myInterval);
     };
-  }, [BarProgress]);
+  }, [BarProgress, Pussed]);
 
   return (
-    <div className={`Notification ${Close}`}>
+    <div
+      className={`Notification ${Close}`}
+      onMouseEnter={() => setPussed(true)}
+      onMouseLeave={() => setPussed(false)}
+    >
       <div className="col">
         <p>{props.noty.msg}</p>
         <Cancel className="close" onClick={() => deleteBtn()} />

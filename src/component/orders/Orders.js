@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getOrders } from "../../setup/actions/orders";
 import Loading from "../loadingIcon/Loading";
 import OrdersProducts from "./ordersProducts/OrdersProducts";
+import { AddNotifications } from "../../setup/actions/notification";
 import "./style.scss";
 const Orders = () => {
   const user = useSelector((state) => state.user);
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(async () => {
     if (user) {
       let orders = await getOrders(user.userID);
       setOrders(orders);
     } else {
-      navigate("/login");
+      dispatch(
+        AddNotifications({ msg: "you shoud login frist", type: "error" })
+      );
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     }
   }, [getOrders, user]);
 

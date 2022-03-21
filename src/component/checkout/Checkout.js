@@ -63,7 +63,7 @@ const Checkout = () => {
         })
       );
       dispatch(REMOVE_ITEM(user.userID, id));
-    }, 1000);
+    }, 200);
   };
   const itemsDom = items.map((item) => {
     console.log(item.price);

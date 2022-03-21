@@ -10,6 +10,7 @@ const Notification = (props) => {
   const dispatch = useDispatch();
   const deleteBtn = () => {
     setBarProgress(100);
+    setClose("close");
   };
   const handelDelete = () => {
     setClose("close");

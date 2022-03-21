@@ -1,14 +1,18 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./style.scss";
 import axios from "axios";
 import { AddOrder } from "../../setup/actions/orders";
+import { AddNotifications } from "../../setup/actions/notification";
+
 const Payment = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   if (!user) {
     navigate("/login");
   }
@@ -19,6 +23,9 @@ const Payment = () => {
   const removeItem = (e, id) => {
     e.target.parentElement.parentElement.classList.add("close");
     setTimeout(() => {
+      dispatch(
+        AddNotifications({ msg: "item removed success ", type: "success" })
+      );
       setproducts((products) => products.filter((item) => item.id !== id));
     }, 700);
   };

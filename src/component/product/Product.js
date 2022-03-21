@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ADD_ITEM } from "../../setup/actions/Baskt";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { AddNotifications } from "../../setup/actions/notification";
 const Prodcut = ({
   id,
   title,
@@ -26,6 +26,7 @@ const Prodcut = ({
       category,
     };
     dispatch(ADD_ITEM(user.userID, product));
+    dispatch(AddNotifications("item add successed"));
   };
   return (
     <div className="product anim" id={id}>

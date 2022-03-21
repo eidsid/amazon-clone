@@ -38,7 +38,12 @@ const Checkout = () => {
   const dispatch = useDispatch();
 
   const removeItem = (id) => {
-    dispatch(AddNotifications("item removed from Basket successful"));
+    dispatch(
+      AddNotifications({
+        msg: "item removed from Basket successful",
+        type: "success",
+      })
+    );
     dispatch(REMOVE_ITEM(user.userID, id));
   };
   const itemsDom = items.map((item, index) => {

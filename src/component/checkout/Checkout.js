@@ -13,12 +13,8 @@ const Checkout = () => {
   let products = useSelector((state) => state.Products);
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
-  if (!user) {
-    navigate("/");
-  }
-
   const [allPrice, setallPrice] = useState(0);
-
+  const dispatch = useDispatch();
   const getAllPrice = () => {
     let price = 0;
     items.forEach((item) => (price += item.price));
@@ -32,10 +28,16 @@ const Checkout = () => {
       })
     : "";
   useEffect(() => {
+    if (!user) {
+      dispatch(
+        AddNotifications({ msg: "you shoud login frist", type: "error" })
+      );
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+    }
     getAllPrice();
   }, [items]);
-
-  const dispatch = useDispatch();
 
   const removeItem = (id) => {
     dispatch(

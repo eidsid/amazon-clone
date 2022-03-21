@@ -14,7 +14,7 @@ const Notification = (props) => {
     setClose("close");
     setTimeout(() => {
       dispatch(RemoveNotifications(props.noty.id));
-    }, 50);
+    }, 500);
   };
   useEffect(() => {
     let myInterval = setInterval(() => {

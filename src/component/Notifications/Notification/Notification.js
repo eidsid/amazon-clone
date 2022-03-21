@@ -35,7 +35,7 @@ const Notification = (props) => {
 
   return (
     <div
-      className={`Notification ${Close}`}
+      className={`Notification ${props.noty.type} ${Close}  `}
       onMouseEnter={() => setPussed(true)}
       onMouseLeave={() => setPussed(false)}
     >

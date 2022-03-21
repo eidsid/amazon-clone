@@ -26,7 +26,7 @@ const Prodcut = ({
       category,
     };
     if (!user) {
-      dispatch(AddNotifications("Please Login frist"));
+      dispatch(AddNotifications({ msg: "Please Login frist", type: "error" }));
     } else {
       dispatch(ADD_ITEM(user.userID, product));
       dispatch(AddNotifications("item add to Basket successful"));

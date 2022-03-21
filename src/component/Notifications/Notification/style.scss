@@ -13,6 +13,7 @@
     padding: 1rem;
     margin-bottom: 0.5rem;
     animation: forwards 1s ease-in openAnim;
+    font-weight: 600;
     .col {
         @include flex(row);
         margin-bottom: 0.5rem;
@@ -35,6 +36,15 @@
     }
     &.close {
         animation: forwards 1s ease-in closeAnim;
+    }
+    &.error {
+        background-color: #b31111;
+        color: rgb(250, 250, 250);
+        .bar {
+            .child {
+                background-color: black;
+            }
+        }
     }
 }
 

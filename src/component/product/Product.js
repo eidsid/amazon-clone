@@ -25,8 +25,12 @@ const Prodcut = ({
       description,
       category,
     };
-    dispatch(ADD_ITEM(user.userID, product));
-    dispatch(AddNotifications("item add to Basket successful"));
+    if (!user) {
+      dispatch(AddNotifications("Please Login frist"));
+    } else {
+      dispatch(ADD_ITEM(user.userID, product));
+      dispatch(AddNotifications("item add to Basket successful"));
+    }
   };
   return (
     <div className="product anim" id={id}>

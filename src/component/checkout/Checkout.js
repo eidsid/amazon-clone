@@ -14,6 +14,8 @@ const Checkout = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [allPrice, setallPrice] = useState(0);
+  const [timeoutId, settimeoutId] = useState(null);
+
   const dispatch = useDispatch();
   const getAllPrice = () => {
     let price = 0;
@@ -28,16 +30,25 @@ const Checkout = () => {
       })
     : "";
   useEffect(() => {
-    if (!user) {
-      dispatch(
-        AddNotifications({ msg: "you shoud login frist", type: "error" })
-      );
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
-    }
     getAllPrice();
-  }, [items]);
+    if (!user) {
+      let timeId = setTimeout(() => {
+        dispatch(
+          AddNotifications({ msg: "you shoud login frist", type: "error" })
+        );
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+      }, 1500);
+      settimeoutId(timeId);
+    } else {
+      clearTimeout(timeoutId);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [items, user]);
 
   const removeItem = (e, id) => {
     e.target.parentElement.parentElement.parentElement.parentElement.classList.add(

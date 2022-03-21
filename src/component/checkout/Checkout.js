@@ -39,19 +39,25 @@ const Checkout = () => {
     getAllPrice();
   }, [items]);
 
-  const removeItem = (id) => {
-    dispatch(
-      AddNotifications({
-        msg: "item removed from Basket successful",
-        type: "success",
-      })
+  const removeItem = (e, id) => {
+    e.target.parentElement.parentElement.parentElement.parentElement.classList.add(
+      "close"
     );
-    dispatch(REMOVE_ITEM(user.userID, id));
+
+    setTimeout(() => {
+      dispatch(
+        AddNotifications({
+          msg: "item removed from Basket successful",
+          type: "success",
+        })
+      );
+      dispatch(REMOVE_ITEM(user.userID, id));
+    }, 1000);
   };
-  const itemsDom = items.map((item, index) => {
+  const itemsDom = items.map((item) => {
     console.log(item.price);
     return (
-      <div key={index}>
+      <div key={item.id} id={item.id}>
         <div className="item">
           <div className="col">
             <Link to={`/info/${item.id}`} className="linke">
@@ -61,7 +67,10 @@ const Checkout = () => {
               <p> {item.title} </p>
               <p>in stack</p>
               <p>Eligible for FREE delivery</p>
-              <button onClick={() => removeItem(item.id)}> remove item </button>
+              <button onClick={(e) => removeItem(e, item.id)}>
+                {" "}
+                remove item{" "}
+              </button>
             </div>
           </div>
           <p className="price">

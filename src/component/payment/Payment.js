@@ -16,12 +16,15 @@ const Payment = () => {
   const [products, setproducts] = useState(Baskt);
   const [TotalCost, setTotalCost] = useState(null);
 
-  const removeItem = (id) => {
-    setproducts((products) => products.filter((item) => item.id !== id));
+  const removeItem = (e, id) => {
+    e.target.parentElement.parentElement.classList.add("close");
+    setTimeout(() => {
+      setproducts((products) => products.filter((item) => item.id !== id));
+    }, 700);
   };
-  const itemsDom = products.map((item, index) => {
+  const itemsDom = products.map((item) => {
     return (
-      <div className="product" key={index}>
+      <div className="product" key={item.id}>
         <Link to={`/info/${item.id}`} className="linke">
           <img src={item.image} alt="image" className="image" />
         </Link>
@@ -29,7 +32,7 @@ const Payment = () => {
           <p> {item.title} </p>
           <p>in stack</p>
           <p>Eligible for FREE delivery</p>
-          <button onClick={() => removeItem(item.id)}> remove item </button>
+          <button onClick={(e) => removeItem(e, item.id)}> remove item </button>
           <p className="price">
             <strong> $ {item.price} </strong>
           </p>

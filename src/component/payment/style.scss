@@ -35,6 +35,9 @@ $BGcolor: white;
                 width: 150px;
                 height: 150px;
             }
+            &.close {
+                animation: forwards 0.7s ease-in closeOrderditemAnim;
+            }
         }
     }
     .paymentMothed {
@@ -73,6 +76,13 @@ $BGcolor: white;
                 }
             }
         }
+    }
+}
+
+@keyframes closeOrderditemAnim {
+    100% {
+        transform: translateY(-200%);
+        opacity: 0;
     }
 }
 

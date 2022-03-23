@@ -19,8 +19,8 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const getAllPrice = () => {
     let price = 0;
-    items.forEach((item) => (price += item.price));
-    setallPrice(price);
+    items.forEach((item) => (price += item.price * Number(item.count)));
+    setallPrice(Math.round(price));
   };
   const recomendedItems = items.length
     ? products.map((item, index) => {
@@ -78,6 +78,7 @@ const Checkout = () => {
               <p> {item.title} </p>
               <p>in stack</p>
               <p>Eligible for FREE delivery</p>
+              <p>count {item.count} pieces</p>
               <button onClick={(e) => removeItem(e, item.id)}>
                 {" "}
                 remove item{" "}
@@ -85,7 +86,7 @@ const Checkout = () => {
             </div>
           </div>
           <p className="price">
-            <strong> $ {item.price} </strong>
+            <strong> $ {item.price * item.count} </strong>
           </p>
         </div>
         <hr />

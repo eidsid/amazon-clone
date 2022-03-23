@@ -1,9 +1,11 @@
 import {
   doc,
+  getDoc,
   setDoc,
   getDocs,
   deleteDoc,
   collection,
+  updateDoc,
 } from "firebase/firestore/lite";
 import { db } from "../../setup/firbase";
 
@@ -24,10 +26,19 @@ export const getItems = (id) => async (dispatch) => {
 export const ADD_ITEM = (userID, item) => async (dispatch) => {
   try {
     const BasktRef = collection(db, `users/${userID}/Baskt`);
-    const userinfoRef = doc(BasktRef, `${item.id}`);
-    setDoc(userinfoRef, item).then(() => {
-      dispatch({ type: "ADD_ITEM", payload: item });
-    });
+    const itemRef = doc(BasktRef, `${item.id}`);
+    const snapDoc = await getDoc(itemRef);
+
+    if (snapDoc.exists()) {
+      let object = snapDoc.data();
+      let count = !object.count ? 1 : +object.count + 1;
+      let updatedItem = { ...object, count };
+      await updateDoc(itemRef, updatedItem);
+    } else {
+      setDoc(itemRef, item).then(() => {
+        dispatch({ type: "ADD_ITEM", payload: item });
+      });
+    }
   } catch (error) {
     console.log(error.message);
   }

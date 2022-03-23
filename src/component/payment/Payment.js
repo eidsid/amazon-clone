@@ -108,7 +108,7 @@ const Payment = () => {
               .map((item) => item.price * item.count)
               .reduce((p, c) => p + c)
           : 0;
-      setTotalCost(price);
+      setTotalCost(Math.round(price));
     };
     editCost();
     return () => {

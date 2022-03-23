@@ -33,7 +33,9 @@ export const ADD_ITEM = (userID, item) => async (dispatch) => {
       let object = snapDoc.data();
       let count = !object.count ? 1 : +object.count + 1;
       let updatedItem = { ...object, count };
-      await updateDoc(itemRef, updatedItem);
+      await updateDoc(itemRef, updatedItem).then(() => {
+        dispatch({ type: "UPDATE_ITEM", payload: updatedItem });
+      });
     } else {
       setDoc(itemRef, item).then(() => {
         dispatch({ type: "ADD_ITEM", payload: item });

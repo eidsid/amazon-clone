@@ -6,6 +6,8 @@ import "./style.scss";
 import { Email, Facebook, Pinterest, Twitter } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_ITEM } from "../../setup/actions/Baskt";
+import { AddNotifications } from "../../setup/actions/notification";
+
 const ProdcutInfo = () => {
   const { id } = useParams();
   const user = useSelector((state) => state.user);
@@ -15,6 +17,12 @@ const ProdcutInfo = () => {
 
   const dispatch = useDispatch();
   const addToBaskt = () => {
+    dispatch(
+      AddNotifications({
+        msg: "item add to Basket successful",
+        type: "success",
+      })
+    );
     dispatch(ADD_ITEM(user.userID, product));
   };
   const buyfunc = () => {};

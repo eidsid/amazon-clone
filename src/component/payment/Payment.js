@@ -35,11 +35,11 @@ const Payment = () => {
         </Link>
         <div className="info">
           <p> {item.title} </p>
-          <p>in stack</p>
+          <p>{item.count} in stack</p>
           <p>Eligible for FREE delivery</p>
           <button onClick={(e) => removeItem(e, item.id)}> remove item </button>
           <p className="price">
-            <strong> $ {item.price} </strong>
+            <strong> $ {item.price * item.count} </strong>
           </p>
         </div>
       </div>
@@ -104,8 +104,10 @@ const Payment = () => {
     const editCost = () => {
       let price =
         products.length > 0
-          ? products.map((item) => item.price).reduce((p, c) => p + c)
-          : 1;
+          ? products
+              .map((item) => item.price * item.count)
+              .reduce((p, c) => p + c)
+          : 0;
       setTotalCost(price);
     };
     editCost();

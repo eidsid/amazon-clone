@@ -11,7 +11,7 @@ const OrdersProducts = (props) => {
           <p> {item.title} </p>
           <p>orderd</p>
           <p className="price">
-            <strong> $ {item.price} </strong>
+            <strong> $ {item.price * item.count} </strong>
           </p>
         </div>
       </div>

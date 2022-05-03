@@ -51,7 +51,7 @@ const Register = (props) => {
     } else {
       setErrors("All Field must be filed");
     }
-    if (Password.length < 7) {
+    if (Password.length <= 7) {
       setErrors("Password must be more than 7 character");
     }
   };

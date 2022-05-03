@@ -32,7 +32,7 @@ const Register = (props) => {
         .then(async (data) => {
           if (data) {
             let userDetails = { name: userName, email: data.user.email };
-            console.log(data.user.uid);
+            // console.log(data.user.uid);
             dispatch(createDBUser(userDetails, data.user.uid));
           }
         })
@@ -50,6 +50,9 @@ const Register = (props) => {
         });
     } else {
       setErrors("All Field must be filed");
+    }
+    if (Password.length < 7) {
+      setErrors("Password must be more than 7 character");
     }
   };
 

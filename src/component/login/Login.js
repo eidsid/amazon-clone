@@ -2,30 +2,43 @@ import { useState } from "react";
 import "./style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, loginUser } from "setup/firbase";
+import { AddNotifications } from "setup/actions/notification";
+import { useDispatch } from "react-redux";
 const Login = (props) => {
-  const [username, setusername] = useState("");
-  const [Password, setPassword] = useState("");
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+
   if (props.user) navigate("/");
+  function handleFormData(event) {
+    const { type, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [type]: value,
+    }));
+  }
+
   const login = async (e) => {
     e.preventDefault();
-    if (
-      username !== "" &&
-      username.length > 3 &&
-      Password.length > 7 &&
-      Password !== ""
-    ) {
-      await loginUser(auth, username, Password)
+    if (formData.email.length && formData.password.length) {
+      await loginUser(auth, formData.email, formData.password)
         .then((user) => {
           console.log(user);
           if (user) {
+            dispatch(
+              AddNotifications({
+                msg: "welcome back" + user.user.email,
+                type: "success",
+              })
+            );
             navigate("/");
           }
           // ...
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          dispatch(
+            AddNotifications({ msg: "wrong password or email", type: "error" })
+          );
         });
     }
   };
@@ -35,23 +48,19 @@ const Login = (props) => {
         <h2>Sign in</h2>
         <div className="form__control">
           <label htmlFor="email">E-mail</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            onChange={(e) => setusername(e.target.value)}
-          />
+          <input type="email" id="email" onChange={handleFormData} />
         </div>
         <div className="form__control">
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <input type="password" id="password" onChange={handleFormData} />
         </div>
-        <button>Sign in</button>
+        <button
+          disabled={
+            !formData.email.length || !formData.password.length ? "disable" : ""
+          }
+        >
+          Sign in
+        </button>
       </form>
       <div className="addition">
         <p>

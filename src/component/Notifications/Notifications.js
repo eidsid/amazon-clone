@@ -3,7 +3,7 @@ import Notification from "./Notification/Notification";
 import { useSelector } from "react-redux";
 const Notifications = () => {
   const notifications = useSelector((state) => state.Notifications);
-  console.log(notifications);
+
   const notificationsDom = notifications.map((noty) => {
     return <Notification noty={noty} key={noty.id} />;
   });

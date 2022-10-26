@@ -12,14 +12,14 @@ import Subheader from "./sub_header/Subheader";
 import Subtitles from "./subtitles/Subtitles";
 import SiderHeader from "./sidheader/SideHeader";
 
-import useFetch from "../../setup/FetchAPI/Fetchapi";
+import useFetch from "setup/FetchAPI/Fetchapi";
 
 import {
   FilterProductsSearch,
   FilterProductsCat,
   FilterProductsPrice,
-} from "../../setup/actions/Products";
-import { logout, auth } from "../../setup/firbase";
+} from "setup/actions/Products";
+import { logout, auth } from "setup/firbase";
 
 const Header = (props) => {
   const user = useSelector((state) => state.user);

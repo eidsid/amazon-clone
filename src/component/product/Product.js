@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { ADD_ITEM } from "../../setup/actions/Baskt";
-import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { AddNotifications } from "../../setup/actions/notification";
+import "./style.scss";
+import { AddNotifications } from "setup/actions/notification";
+import { ADD_ITEM } from "setup/actions/Baskt";
 const Prodcut = ({
   id,
   title,

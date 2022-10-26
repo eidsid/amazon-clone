@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./style.scss";
 import axios from "axios";
-import { AddOrder } from "../../setup/actions/orders";
-import { AddNotifications } from "../../setup/actions/notification";
+import { AddOrder } from "setup/actions/orders";
+import { AddNotifications } from "setup/actions/notification";
 
 const Payment = () => {
   const user = useSelector((state) => state.user);

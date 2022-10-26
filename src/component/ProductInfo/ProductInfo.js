@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import { api } from "../../setup/api/Products";
-import useFetch from "../../setup/FetchAPI/Fetchapi";
-import Loading from "../loadingIcon/Loading";
-import "./style.scss";
 import { Email, Facebook, Pinterest, Twitter } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_ITEM } from "../../setup/actions/Baskt";
-import { AddNotifications } from "../../setup/actions/notification";
+import { api } from "setup/api/Products";
+import useFetch from "setup/FetchAPI/Fetchapi";
+import { ADD_ITEM } from "setup/actions/Baskt";
+import { AddNotifications } from "setup/actions/notification";
+import Loading from "../loadingIcon/Loading";
+import "./style.scss";
 
 const ProdcutInfo = () => {
   const { id } = useParams();

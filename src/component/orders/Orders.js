@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getOrders } from "../../setup/actions/orders";
+import { getOrders } from "setup/actions/orders";
 import Loading from "../loadingIcon/Loading";
 import OrdersProducts from "./ordersProducts/OrdersProducts";
-import { AddNotifications } from "../../setup/actions/notification";
+import { AddNotifications } from "setup/actions/notification";
 import "./style.scss";
 const Orders = () => {
   const user = useSelector((state) => state.user);

@@ -4,35 +4,48 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "./style.scss";
 
-import { auth, createUser } from "../../setup/firbase";
-import { createDBUser } from "../../setup/actions/user";
+import { auth, createUser } from "setup/firbase";
+import { createDBUser } from "setup/actions/user";
 
-const Register = (props) => {
+const Register = ({ user }) => {
   const [userName, setuserName] = useState("");
   const [userEmail, setuserEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [isprocess, setisprocess] = useState(false);
   const [Errors, setErrors] = useState("");
+  const [userPass, setUserPass] = useState(true);
   const navigate = useNavigate();
-  if (props.user) navigate("/");
+  if (user) navigate("/");
   const dispatch = useDispatch();
+  function checkEmail() {
+    if (userName === "" || userEmail === "" || Password == "") {
+      setErrors("All Field must be filed");
+      setUserPass(false);
+    }
 
+    if (userName < 3) {
+      setUserPass(false);
+      setErrors("Your Name must be more than 2 character");
+    }
+    if (Password.length < 8) {
+      setUserPass(false);
+      setErrors("Password must be more than 7 character");
+    }
+    if (userEmail.length > 3) {
+      setUserPass(false);
+      setErrors("Email must be more than 3 character");
+    }
+  }
   const Register = async (e) => {
     e.preventDefault();
-    if (
-      userName !== "" &&
-      userName.length >= 3 &&
-      userEmail !== "" &&
-      userEmail.length > 3 &&
-      Password.length > 7 &&
-      Password !== ""
-    ) {
+    checkEmail();
+    if (userPass) {
       setisprocess(true);
       await createUser(auth, userEmail, Password)
         .then(async (data) => {
           if (data) {
             let userDetails = { name: userName, email: data.user.email };
-            // console.log(data.user.uid);
+
             dispatch(createDBUser(userDetails, data.user.uid));
           }
         })
@@ -48,17 +61,12 @@ const Register = (props) => {
 
           setisprocess(false);
         });
-    } else {
-      setErrors("All Field must be filed");
-    }
-    if (Password.length <= 7) {
-      setErrors("Password must be more than 7 character");
     }
   };
 
   return (
     <div className="login__ontainer">
-      <div className={Errors ? "errorShow" : ""} onClick={() => setErrors("")}>
+      <div className={Errors & "errorShow"} onClick={() => setErrors("")}>
         {Errors}
       </div>
       <form onSubmit={Register}>

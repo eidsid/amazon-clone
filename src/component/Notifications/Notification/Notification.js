@@ -1,7 +1,7 @@
 import { Cancel } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { RemoveNotifications } from "../../../setup/actions/notification";
+import { RemoveNotifications } from "setup/actions/notification";
 import "./style.scss";
 const Notification = (props) => {
   const [BarProgress, setBarProgress] = useState(0);

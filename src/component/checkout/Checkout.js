@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import { REMOVE_ITEM } from "../../setup/actions/Baskt";
-import { AddNotifications } from "../../setup/actions/notification";
+import { REMOVE_ITEM } from "setup/actions/Baskt";
+import { AddNotifications } from "setup/actions/notification";
 import Prodcut from "../product/Product";
 import Subtotal from "../subtotal/Subtotal";
 import "./checkout.scss";
@@ -109,7 +109,7 @@ const Checkout = () => {
         <Subtotal allPrice={allPrice} allProduct={items.length} />
         <div className="recomended">
           <h4>Recomended</h4>
-          {items.length ? recomendedItems : ""}
+          {items.length && recomendedItems}
         </div>
       </div>
     </div>

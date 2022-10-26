@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, loginUser } from "../../setup/firbase";
+import { auth, loginUser } from "setup/firbase";
 const Login = (props) => {
   const [username, setusername] = useState("");
   const [Password, setPassword] = useState("");

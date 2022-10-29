@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, loginUser } from "setup/firbase";
@@ -7,23 +7,21 @@ import { useDispatch } from "react-redux";
 const Login = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({ email: "", password: "" });
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [isProcessing, setisProcessing] = useState(false);
 
   if (props.user) navigate("/");
-  function handleFormData(event) {
-    const { type, value } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [type]: value,
-    }));
-  }
 
   const login = async (e) => {
     e.preventDefault();
-    if (formData.email.length && formData.password.length) {
-      await loginUser(auth, formData.email, formData.password)
+    if (emailRef.current.value.length && passwordRef.current.value.length) {
+      setisProcessing(true);
+
+      await loginUser(auth, emailRef.current.value, passwordRef.current.value)
         .then((user) => {
-          console.log(user);
+          // console.log(user);
           if (user) {
             dispatch(
               AddNotifications({
@@ -36,6 +34,7 @@ const Login = (props) => {
           // ...
         })
         .catch(() => {
+          setisProcessing(false);
           dispatch(
             AddNotifications({ msg: "wrong password or email", type: "error" })
           );
@@ -48,19 +47,13 @@ const Login = (props) => {
         <h2>Sign in</h2>
         <div className="form__control">
           <label htmlFor="email">E-mail</label>
-          <input type="email" id="email" onChange={handleFormData} />
+          <input type="email" ref={emailRef} />
         </div>
         <div className="form__control">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" onChange={handleFormData} />
+          <input type="password" ref={passwordRef} />
         </div>
-        <button
-          disabled={
-            !formData.email.length || !formData.password.length ? "disable" : ""
-          }
-        >
-          Sign in
-        </button>
+        <button disabled={isProcessing ? "disable" : ""}>Sign in</button>
       </form>
       <div className="addition">
         <p>

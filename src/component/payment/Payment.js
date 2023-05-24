@@ -63,7 +63,7 @@ const Payment = () => {
     setprocessing(true);
     //  generate the epecial tripe secret which alows us to charge acustomer
     await axios
-      .post("https://amazon-cloneweb.herokuapp.com/payments/create", {
+      .post("https://amazone-clone-server.onrender.com/payments/create", {
         total: Math.floor(TotalCost * 1),
       })
       .then(async (data) => {

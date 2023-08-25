@@ -1,0 +1,36 @@
+.loadingContainer {
+  min-height: 80vh;
+}
+
+.loadingContainer .loading {
+  position: fixed;
+  top: 49%;
+  left: 49%;
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  -webkit-animation: 2s infinite ease-in-out loadinganim;
+          animation: 2s infinite ease-in-out loadinganim;
+}
+
+@-webkit-keyframes loadinganim {
+  0% {
+    -webkit-transform: rotate(0) scale(1.5);
+            transform: rotate(0) scale(1.5);
+  }
+  100% {
+    -webkit-transform: rotate(1turn) scale(2);
+            transform: rotate(1turn) scale(2);
+  }
+}
+
+@keyframes loadinganim {
+  0% {
+    -webkit-transform: rotate(0) scale(1.5);
+            transform: rotate(0) scale(1.5);
+  }
+  100% {
+    -webkit-transform: rotate(1turn) scale(2);
+            transform: rotate(1turn) scale(2);
+  }
+}
+/*# sourceMappingURL=style.css.map */

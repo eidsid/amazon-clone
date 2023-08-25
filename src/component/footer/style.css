@@ -1,0 +1,103 @@
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer * {
+  width: 100%;
+  font-weight: 500;
+  color: rgba(238, 234, 234, 0.616);
+}
+
+.footer > * {
+  padding: 1rem;
+}
+
+.footer .title {
+  color: #fff;
+}
+
+.footer a.Back-to-top {
+  font-size: 14px;
+  line-height: 20px;
+  background-color: #37475a;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer a.Back-to-top .BackToTop .BackToTopText {
+  color: #fff;
+}
+
+.footer a.Back-to-top:hover {
+  background-color: #55677c;
+}
+
+.footer__Nav {
+  background-color: #232f3e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.footer__Nav .col {
+  margin: 1rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.footer__Nav .col ul {
+  list-style-type: none;
+}
+
+.footer__Nav .col ul li {
+  margin-top: 0.5rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  border-bottom: transparent 1px solid;
+}
+
+.footer__Nav .col ul li:hover {
+  border-color: rgba(238, 234, 234, 0.616);
+}
+
+.footer .copy {
+  background-color: #131a22;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .footer > div {
+    padding: 0.5rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

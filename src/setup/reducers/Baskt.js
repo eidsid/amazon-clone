@@ -8,7 +8,7 @@ export default (Baskt = [], action) => {
       return Baskt.filter((item) => item.id !== action.payload);
     case "UPDATE_ITEM":
       return Baskt.map((item) =>
-        item.id == action.payload.id ? action.payload : item
+        item.id === action.payload.id ? action.payload : item
       );
     default:
       return Baskt;

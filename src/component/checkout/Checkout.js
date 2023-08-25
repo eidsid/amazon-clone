@@ -66,7 +66,7 @@ const Checkout = () => {
     }, 200);
   };
   const itemsDom = items.map((item) => {
-    console.log(item.price);
+    // console.log(item.price);
     return (
       <div key={item.id} id={item.id}>
         <div className="item">

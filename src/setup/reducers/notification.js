@@ -3,7 +3,7 @@ export default (notification = [], action) => {
     case "ADD_NOT":
       return [...notification, action.payload];
     case "REMOVE_NOT":
-      console.log(action.payload);
+      // console.log(action.payload);
       return notification.filter((noty) => noty.id !== action.payload);
 
     default:

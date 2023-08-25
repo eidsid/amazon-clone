@@ -1,0 +1,172 @@
+.checkCount {
+  text-align: center;
+  padding: 1rem;
+}
+
+.checkCount span {
+  color: #99079e;
+  font-weight: 400;
+}
+
+.paymentContainer {
+  background-color: white;
+  min-height: 100vh;
+}
+
+.paymentContainer > *:not(hr) {
+  max-width: 500px;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 2rem;
+}
+
+.paymentContainer > *:not(hr) > span {
+  font-weight: 800;
+}
+
+.paymentContainer .productsSection .product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 2rem;
+  min-width: 500px;
+}
+
+.paymentContainer .productsSection .product img {
+  width: 150px;
+  height: 150px;
+}
+
+.paymentContainer .productsSection .product.close {
+  -webkit-animation: forwards 0.7s ease-in closeOrderditemAnim;
+          animation: forwards 0.7s ease-in closeOrderditemAnim;
+}
+
+.paymentContainer .paymentMothed {
+  min-width: 100%;
+}
+
+.paymentContainer .paymentMothed > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 2rem;
+}
+
+.paymentContainer .paymentMothed > div > span {
+  font-weight: 600;
+}
+
+.paymentContainer .paymentMothed .cardInfo {
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.paymentContainer .paymentMothed .cardInfo .card-element {
+  width: 400px !important;
+}
+
+.paymentContainer .paymentMothed .cardInfo .errors {
+  margin-top: 1rem;
+}
+
+.paymentContainer .paymentMothed .order {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 2rem;
+  border: 1px solid #999999;
+  padding: 1rem;
+  margin: 2rem auto;
+  width: 300px;
+}
+
+.paymentContainer .paymentMothed .order > * {
+  width: 100%;
+}
+
+.paymentContainer .paymentMothed .order > *:is(span) {
+  padding: 2px;
+  font-weight: 600;
+}
+
+.paymentContainer .paymentMothed .order > *:is(button) {
+  background-color: #ffd000;
+  padding: 2px;
+}
+
+@-webkit-keyframes closeOrderditemAnim {
+  100% {
+    -webkit-transform: translateY(-200%);
+            transform: translateY(-200%);
+    opacity: 0;
+  }
+}
+
+@keyframes closeOrderditemAnim {
+  100% {
+    -webkit-transform: translateY(-200%);
+            transform: translateY(-200%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .paymentContainer > *:not(hr) {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .paymentContainer .productsSection .product {
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
+    gap: 0.5rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

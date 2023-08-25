@@ -1,0 +1,105 @@
+.Notification {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #38a169;
+  color: white;
+  border-radius: 10px;
+  width: 300px;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  -webkit-animation: forwards 1s ease-in openAnim;
+          animation: forwards 1s ease-in openAnim;
+  font-weight: 600;
+}
+
+.Notification .col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.Notification .col .close:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.Notification .bar {
+  width: 100%;
+  height: 10px;
+  background-color: aliceblue;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.Notification .bar .child {
+  height: inherit;
+  background-color: #776f05;
+  width: 0;
+}
+
+.Notification.close {
+  -webkit-animation: forwards 1s ease-in closeAnim;
+          animation: forwards 1s ease-in closeAnim;
+}
+
+.Notification.error {
+  background-color: #b31111;
+  color: #fafafa;
+}
+
+.Notification.error .bar .child {
+  background-color: black;
+}
+
+@-webkit-keyframes openAnim {
+  0% {
+    -webkit-transform: translateX(120%);
+            transform: translateX(120%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes openAnim {
+  0% {
+    -webkit-transform: translateX(120%);
+            transform: translateX(120%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes closeAnim {
+  100% {
+    -webkit-transform: translateX(500%);
+            transform: translateX(500%);
+  }
+}
+
+@keyframes closeAnim {
+  100% {
+    -webkit-transform: translateX(500%);
+            transform: translateX(500%);
+  }
+}
+/*# sourceMappingURL=style.css.map */

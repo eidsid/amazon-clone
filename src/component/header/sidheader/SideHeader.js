@@ -4,14 +4,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import "./style.scss";
 import { Link } from "react-router-dom";
 
-const SiderHeader = (props) => {
-  let links = props.titles.map((title) => {
+const SiderHeader = ({
+  titles,
+  filterProducts,
+  showsideHeader,
+  showSideHeaderfun,
+  handelSignout,
+  user,
+}) => {
+  let links = titles.map((title) => {
     return (
-      <li
-        className="links"
-        onClick={() => props.filterProducts(title)}
-        key={title}
-      >
+      <li className="links" onClick={() => filterProducts(title)} key={title}>
         {title}
       </li>
     );
@@ -20,7 +23,7 @@ const SiderHeader = (props) => {
   let prices = [50, 100, 1000];
   let links_prices = prices.map((price) => {
     return (
-      <li onClick={() => props.filterProducts(price)} key={price}>
+      <li onClick={() => filterProducts(price)} key={price}>
         <span>Less than</span> {price}
       </li>
     );
@@ -28,23 +31,24 @@ const SiderHeader = (props) => {
 
   return (
     <div
-      className={`container ${props.showsideHeader ? "active" : "disActive"}`}
+      className={`side-header-container ${
+        showsideHeader ? "active" : "disActive"
+      }`}
     >
       <div className="nav">
         {" "}
-        <CloseIcon className="close" onClick={props.showSideHeaderfun} />
         <div className="account">
           <AccountCircleIcon sx={{ fontSize: 40 }} />
           <div className="heade_login">
-            {!props.user ? (
+            {!user ? (
               <Link to="/login" className="item">
                 <span>hello gust</span>
                 <span>Sign In</span>
               </Link>
             ) : (
               <div className="item">
-                <span>hello {props.user.split(" ").slice(0, 1)}</span>
-                <span onClick={props.handelSignout}>logout</span>
+                <span>hello {user.split(" ").slice(0, 1)}</span>
+                <span onClick={handelSignout}>logout</span>
               </div>
             )}
           </div>
@@ -73,6 +77,7 @@ const SiderHeader = (props) => {
           <li>Help</li>
         </ul>
       </div>
+      <CloseIcon className="close" onClick={showSideHeaderfun} />
     </div>
   );
 };

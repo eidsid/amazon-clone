@@ -3,12 +3,12 @@ import RocketIcon from "@mui/icons-material/Rocket";
 import Menu from "@mui/icons-material/Menu";
 import ChevronRightSharpIcon from "@mui/icons-material/ChevronRightSharp";
 
-const Subheader = (props) => {
-  let links = props.titles.map((title) => {
+const Subheader = ({ titles, showSideHeaderfun, filterProducts }) => {
+  let links = titles.map((title) => {
     return (
       <div
         className="sub-header__nav__item"
-        onClick={() => props.filterProducts(title)}
+        onClick={() => filterProducts(title)}
         key={title}
       >
         {title}
@@ -17,8 +17,8 @@ const Subheader = (props) => {
   });
 
   return (
-    <header className="sub-header">
-      <div className="bars" onClick={props.showSideHeaderfun}>
+    <div className="sub-header">
+      <div className="bars" onClick={() => showSideHeaderfun()}>
         <Menu />
         all
       </div>
@@ -28,7 +28,7 @@ const Subheader = (props) => {
         <span>Start selling on amazon today</span>
         <ChevronRightSharpIcon className="arrow-icon" />
       </div>
-    </header>
+    </div>
   );
 };
 export default Subheader;

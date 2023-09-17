@@ -31,7 +31,7 @@ const Register = ({ user }) => {
     if (
       formData.Name === "" ||
       formData.Email === "" ||
-      formData.Password == ""
+      formData.Password === ""
     ) {
       setErrors("All Field must be filed");
       setUserPass(false);

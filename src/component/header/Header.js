@@ -19,6 +19,7 @@ import {
   FilterProductsPrice,
 } from "setup/actions/Products";
 import { logout, auth } from "setup/firbase";
+import AccountDropdown from "./AccountDropdown/AccountDropdown";
 
 const Header = () => {
   let titles = useFetch("https://fakestoreapi.com/products/categories");
@@ -68,13 +69,13 @@ const Header = () => {
         <div className="nav">
           {!user ? (
             <Link to="/login" className="item">
-              <span>hello gust</span>
+              <span>hello,</span>
               <span>Sign In</span>
             </Link>
           ) : (
             <div className="nav__item">
-              <span>hello {user.name}</span>
-              <span onClick={handelSignout}>logout</span>
+              <span>hello , {user.name}</span>
+              <AccountDropdown />
             </div>
           )}
           <Link to="/orders" className="item ">

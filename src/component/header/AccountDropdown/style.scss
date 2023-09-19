@@ -1,0 +1,38 @@
+.account-dropdown {
+  position: relative;
+  z-index: 99999999999999;
+  .account-dropdown-button {
+    background: none;
+    border: none;
+    font-weight: 900;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .account-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 2rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 10px;
+    min-width: 150px;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 8px 12px;
+        color: black;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+    }
+  }
+}

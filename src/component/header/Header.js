@@ -75,7 +75,7 @@ const Header = () => {
           ) : (
             <div className="nav__item">
               <span>hello , {user.name}</span>
-              <AccountDropdown />
+              <AccountDropdown signOut={handelSignout} />
             </div>
           )}
           <Link to="/orders" className="item ">

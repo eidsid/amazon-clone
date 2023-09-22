@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { REMOVE_ITEM } from "setup/actions/Baskt";
 import { AddNotifications } from "setup/actions/notification";
-import Prodcut from "../product/Product";
-import Subtotal from "../subtotal/Subtotal";
+import Prodcut from "../../component/product/Product";
+import Subtotal from "../../component/subtotal/Subtotal";
 import "./checkout.scss";
 const Checkout = () => {
   const items = useSelector((state) => state.Baskt);

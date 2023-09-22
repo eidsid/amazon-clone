@@ -1,8 +1,8 @@
-import Prodcut from "../product/Product";
+import Prodcut from "../../component/product/Product";
 import "./style.scss";
 import { useSelector } from "react-redux";
 
-import Loading from "../loadingIcon/Loading";
+import Loading from "../../component/loadingIcon/Loading";
 
 const Home = () => {
   let products = useSelector((state) => state.Products);

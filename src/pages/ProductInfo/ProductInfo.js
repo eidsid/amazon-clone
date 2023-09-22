@@ -5,7 +5,7 @@ import { api } from "setup/api/Products";
 import useFetch from "setup/FetchAPI/Fetchapi";
 import { ADD_ITEM } from "setup/actions/Baskt";
 import { AddNotifications } from "setup/actions/notification";
-import Loading from "../loadingIcon/Loading";
+import Loading from "../../component/loadingIcon/Loading";
 import "./style.scss";
 
 const ProdcutInfo = () => {

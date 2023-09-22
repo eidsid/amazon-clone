@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getOrders } from "setup/actions/orders";
-import Loading from "../loadingIcon/Loading";
-import OrdersProducts from "./ordersProducts/OrdersProducts";
+import Loading from "../../component/loadingIcon/Loading";
+import OrdersProducts from "../../component/ordersProducts/OrdersProducts";
 import { AddNotifications } from "setup/actions/notification";
 import "./style.scss";
 const Orders = () => {

@@ -13,16 +13,16 @@ import { getProducts } from "./setup/actions/Products";
 import { getUser, Logout } from "./setup/actions/user";
 
 import Header from "./component/header/Header";
-import Home from "./component/home/Home";
-import ProdcutInfo from "./component/ProductInfo/ProductInfo";
-import Login from "./component/login/Login";
-import Register from "./component/register/Register";
-import Checkout from "./component/checkout/Checkout";
-import Payment from "./component/payment/Payment";
-import Orders from "./component/orders/Orders";
+import Home from "./pages/home/Home";
+import ProdcutInfo from "./pages/ProductInfo/ProductInfo";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import Checkout from "./pages/checkout/Checkout";
+import Payment from "./pages/payment/Payment";
+import Orders from "./pages/orders/Orders";
 import Footer from "./component/footer/Footer";
 import Notifications from "./component/Notifications/Notifications";
-import AccountSetting from "Account/AccountSetting";
+import AccountSetting from "pages/Account/AccountSetting";
 
 const promise = loadStripe(
   "pk_test_51JwvitJSSyNgmcbH31X5qiVWlHICk0Uto3Vn1b0h4ij3u23qh35R71sr5VpJJlOhQDMex6uHoul7iRTh8LGwtSmy00Ynbl8eUH"

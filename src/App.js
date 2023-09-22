@@ -22,6 +22,7 @@ import Payment from "./component/payment/Payment";
 import Orders from "./component/orders/Orders";
 import Footer from "./component/footer/Footer";
 import Notifications from "./component/Notifications/Notifications";
+import AccountSetting from "Account/AccountSetting";
 
 const promise = loadStripe(
   "pk_test_51JwvitJSSyNgmcbH31X5qiVWlHICk0Uto3Vn1b0h4ij3u23qh35R71sr5VpJJlOhQDMex6uHoul7iRTh8LGwtSmy00Ynbl8eUH"
@@ -60,6 +61,7 @@ function App() {
           }
         />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/account" element={<AccountSetting />} />
       </Routes>
       <Footer />
     </BrowserRouter>

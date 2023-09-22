@@ -1,37 +1,132 @@
 .account-dropdown {
   position: relative;
-  z-index: 99999999999999;
-  .account-dropdown-button {
-    background: none;
-    border: none;
+  z-index: 99;
+
+  .account-dropdown-title {
     font-weight: 900;
     color: #fff;
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
 
   .account-dropdown-menu {
     position: absolute;
-    top: 100%;
-    left: 2rem;
+    top: 130%;
+    right: -1rem;
     background-color: #fff;
     border: 1px solid #ddd;
     border-top: none;
     padding: 10px;
-    min-width: 150px;
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        padding: 8px 12px;
-        color: black;
-        cursor: pointer;
-
+    height: 60vh;
+    width: 400px;
+    display: none;
+    font-weight: bold;
+    border-radius: 1rem;
+    .account-dropdown-menu-layer {
+      position: absolute;
+      top: -10%;
+      left: 0;
+      z-index: -1;
+      height: 70vh;
+      width: 70vw;
+    }
+    &::before {
+      content: "";
+      clip-path: polygon(48% 54%, 0% 100%, 100% 100%);
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: white;
+      top: -7%;
+      right: 0.7rem;
+    }
+    .top {
+      font-weight: 400;
+      font-size: small;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      .btn {
+        background-color: orange;
+        width: 200px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+        font-size: 15px;
+        color: rgb(27, 154, 212);
+      }
+      .startLink {
+        margin-left: 0.2rem;
+        color: rgb(27, 154, 212);
         &:hover {
-          background-color: #f0f0f0;
+          color: orange;
+          text-decoration: underline;
         }
+      }
+    }
+    hr {
+      margin: 1.5rem 0;
+      opacity: 0.5;
+    }
+    .bottom {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+
+      ul.left {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 8px 12px;
+          color: rgba(0, 0, 0, 0.418);
+          cursor: pointer;
+          &:nth-child(1) {
+            color: black;
+          }
+          &:hover {
+            color: orange;
+            text-decoration: underline;
+          }
+        }
+      }
+      .center {
+        height: 40vh;
+        width: 2px;
+        background-color: darkgray;
+        opacity: 0.7;
+      }
+      .right {
+        * {
+          margin: 1rem 0;
+        }
+        h3 {
+          color: black;
+        }
+        p {
+          color: rgba(0, 0, 0, 0.418);
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .account-dropdown-menu {
+      display: block;
+    }
+  }
+  @media (max-width: "700px") {
+    .account-dropdown-menu {
+      left: 0;
+      height: 50vh;
+      width: 350px;
+      overflow: hidden;
+      &::before {
+        display: none;
       }
     }
   }

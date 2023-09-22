@@ -67,17 +67,18 @@ const Header = () => {
           </div>
         </div>
         <div className="nav">
-          {!user ? (
-            <Link to="/login" className="item">
-              <span>hello,</span>
-              <span>Sign In</span>
-            </Link>
-          ) : (
-            <div className="nav__item">
+          <div className="nav__item">
+            {!user ? (
+              <Link to="/login" className="item">
+                <span>hello,</span>
+                <span>Sign In</span>
+              </Link>
+            ) : (
               <span>hello , {user.name}</span>
-              <AccountDropdown signOut={handelSignout} />
-            </div>
-          )}
+            )}
+
+            <AccountDropdown signOut={handelSignout} user={user} />
+          </div>
           <Link to="/orders" className="item ">
             <span>Returns</span>
             <span>& Orders</span>

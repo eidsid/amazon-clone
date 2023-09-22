@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import "./style.scss";
 import { Link } from "react-router-dom";
-const AccountDropdown = ({ signOut }) => {
+
+const AccountDropdown = ({ signOut, user }) => {
   return (
     <div className="account-dropdown">
       <div className="account-dropdown-title">
@@ -11,18 +12,20 @@ const AccountDropdown = ({ signOut }) => {
       </div>
 
       <div className="account-dropdown-menu">
-        {" "}
-        <div className="top">
-          <Link to={"/login"} className="btn">
-            <span> Sign in</span>
-          </Link>
-          <div className="register">
-            New cusomer?
-            <Link to={"/register"} className="startLink">
-              Start here.
+        {!user && (
+          <div className="top">
+            <Link to={"/login"} className="btn">
+              <span> Sign in</span>
             </Link>
+            <div className="register">
+              New cusomer?
+              <Link to={"/register"} className="startLink">
+                Start here.
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
+
         <hr />
         <div className="bottom">
           <ul className="left">

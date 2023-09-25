@@ -1,9 +1,10 @@
-import LoopIcon from "@mui/icons-material/Loop";
+import React from "react";
 import "./style.scss";
+
 const Loading = () => {
   return (
-    <div className="loadingContainer">
-      <LoopIcon className="loading" />
+    <div className="loading">
+      <div className="loading-spinner"></div>
     </div>
   );
 };

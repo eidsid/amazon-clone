@@ -1,3 +1,4 @@
+@import "../../../global/virables.scss";
 $bgcolor: #ffffff;
 $acountBgColor: #232f3e;
 $mainColor: #232f3e;
@@ -41,8 +42,7 @@ $mainColor: #232f3e;
 
     .account,
     .lang {
-      display: flex;
-      align-items: center;
+      @include flex(row, flex-start, center);
       gap: 1rem;
     }
     .account {
@@ -51,9 +51,7 @@ $mainColor: #232f3e;
       padding: 1rem;
       font-size: 1.5rem;
       .heade_login > .item {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
+        @include flex(row, space-between, center, 1rem);
       }
     }
     .list {

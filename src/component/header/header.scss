@@ -1,9 +1,6 @@
-@mixin flex($direction) {
-  display: flex;
-  flex-direction: $direction;
-  align-items: center;
-  gap: 0.3rem;
-}
+@import "../../global/virables.scss";
+
+// @include flex(row, normal, center, 0.3rem);
 
 @mixin border_haver {
   border: 2px solid transparent;
@@ -21,12 +18,13 @@ header.header {
   width: 100%;
   height: 2rem;
   padding: 2rem;
-  @include flex(row);
-  justify-content: space-between;
+
+  @include flex(row, space-between, center, 0.3rem);
+
   background-color: $main_header_bgcolor;
   color: $main_color;
   .top {
-    @include flex(row);
+    @include flex(row, normal, center, 0.3rem);
 
     .logo {
       width: 100px;
@@ -36,7 +34,7 @@ header.header {
     }
     & .search {
       position: relative;
-      @include flex(row);
+      @include flex(row, normal, center, 0.3rem);
       max-width: 1400px;
       min-width: 200px;
       height: 2.5rem;
@@ -69,12 +67,12 @@ header.header {
   }
 
   & .nav {
-    @include flex(row);
+    @include flex(row, normal, center, 0.3rem);
     gap: 1rem;
 
     .item {
       @include border_haver();
-      @include flex(row);
+      @include flex(row, normal, center, 0.3rem);
       > * {
         &:nth-child(1) {
           font-size: 0.7rem;
@@ -97,10 +95,8 @@ header.header {
 
 @media (max-width: "700px") {
   header.header {
-    flex-direction: column;
-    justify-content: space-between;
+    @include flex(column, space-between, flex-start, 0.3rem);
     height: fit-content;
-    align-items: flex-start;
     padding: 0;
 
     .top {

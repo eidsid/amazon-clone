@@ -1,3 +1,4 @@
+@import "../../../global/virables.scss";
 .account-dropdown {
   position: relative;
   z-index: 99;
@@ -6,8 +7,7 @@
     font-weight: 900;
     color: #fff;
     cursor: pointer;
-    display: flex;
-    align-items: center;
+    @include flex(row, center, center);
   }
 
   .account-dropdown-menu {
@@ -45,15 +45,13 @@
       font-weight: 400;
       font-size: small;
       color: black;
-      display: flex;
-      flex-direction: column;
+      @include flex(column, center, center);
+
       .btn {
         background-color: orange;
         width: 200px;
         height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex(row, center, center);
         border-radius: 1rem;
         font-size: 15px;
         color: rgb(27, 154, 212);
@@ -72,9 +70,7 @@
       opacity: 0.5;
     }
     .bottom {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
+      @include flex(row-reverse, space-between);
 
       ul.left {
         list-style-type: none;
@@ -119,7 +115,7 @@
       display: block;
     }
   }
-  @media (max-width: "700px") {
+  @media (max-width: $small-screen) {
     .account-dropdown-menu {
       left: 0;
       height: 50vh;

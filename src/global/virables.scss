@@ -1,0 +1,17 @@
+$small-screen: 700px;
+@mixin flex(
+  $dir: row,
+  $justify-content: center,
+  $align-items: center,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  gap: $gap;
+}
+
+@mixin transation($time) {
+  transition: all ease-in-out $time;
+}

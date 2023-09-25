@@ -13,6 +13,7 @@
     max-width: 1500px;
     &__row {
       @include flex(row);
+      flex-wrap: wrap;
       z-index: 1;
       margin: 0 5px;
     }

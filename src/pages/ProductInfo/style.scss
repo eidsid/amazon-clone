@@ -1,3 +1,5 @@
+@import "../../global/virables.scss";
+
 $fav_color: rgb(6, 180, 180);
 .prod {
   @include flex(row, space-between, normal);

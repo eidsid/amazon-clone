@@ -70,7 +70,9 @@ const SiderHeader = ({
         <hr />
         <ul className="list">
           <h2 className="title">Help & Settings </h2>
-          <li className="not_allow">Your Account</li>
+          <li>
+            <Link to={"/account"}>Your Account</Link>
+          </li>
           <li className="lang not_allow ">
             <LanguageIcon className="icon " /> English
           </li>

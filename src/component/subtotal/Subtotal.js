@@ -1,11 +1,13 @@
+import { getAllCost } from "hooks/CalcTotalCost";
 import "./subtotal.scss";
 import { Link } from "react-router-dom";
 
-const Subtotal = ({ allProduct: total, allPrice: totalPrice }) => {
+const Subtotal = ({ BasktItems }) => {
   return (
     <div className="subtotal">
       <p>
-        <span>Subtotal({total} items) </span>:<strong> $ {totalPrice}</strong>
+        <span>Subtotal({BasktItems.length} items) </span>:
+        <strong> $ {getAllCost(BasktItems)}</strong>
       </p>
       <button>
         <Link to="/payment">procesed to checkedout</Link>

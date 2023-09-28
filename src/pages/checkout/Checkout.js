@@ -1,98 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-
-import { REMOVE_ITEM } from "setup/actions/Baskt";
+import { useNavigate } from "react-router-dom";
 import { AddNotifications } from "setup/actions/notification";
-import Prodcut from "../../component/product/Product";
 import Subtotal from "../../component/subtotal/Subtotal";
 import "./checkout.scss";
-const Checkout = () => {
-  const items = useSelector((state) => state.Baskt);
+import CheckOutProductDom from "./checkOutproductDom/CheckOutProductDom";
+import { REMOVE_ITEM, UPDATE_ITEM_COUNT } from "setup/actions/Baskt";
 
-  let products = useSelector((state) => state.Products);
+const Checkout = () => {
+  const BasktItems = useSelector((state) => state.Baskt);
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const [allPrice, setallPrice] = useState(0);
-  const [timeoutId, settimeoutId] = useState(null);
-
   const dispatch = useDispatch();
-  const getAllPrice = () => {
-    let price = 0;
-    items.forEach((item) => (price += item.price * Number(item.count)));
-    setallPrice(Math.round(price));
-  };
-  const recomendedItems = items.length
-    ? products.map((item, index) => {
-        if (item.category == items[0].category && items.length >= index + 1) {
-          return <Prodcut {...item} key={item.id} />;
-        }
+
+  const removeItemfunc = (ItemId) => {
+    dispatch(
+      AddNotifications({
+        msg: "item removed from Basket successful",
+        type: "success",
       })
-    : "";
-  useEffect(() => {
-    getAllPrice();
-    if (!user) {
-      let timeId = setTimeout(() => {
-        dispatch(
-          AddNotifications({ msg: "you shoud login frist", type: "error" })
-        );
-        setTimeout(() => {
-          navigate("/login");
-        }, 1500);
-      }, 1500);
-      settimeoutId(timeId);
-    } else {
-      clearTimeout(timeoutId);
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [items, user]);
-
-  const removeItem = (e, id) => {
-    e.target.parentElement.parentElement.parentElement.parentElement.classList.add(
-      "close"
     );
-
-    setTimeout(() => {
-      dispatch(
-        AddNotifications({
-          msg: "item removed from Basket successful",
-          type: "success",
-        })
-      );
-      dispatch(REMOVE_ITEM(user.userID, id));
-    }, 200);
+    dispatch(REMOVE_ITEM(user.userID, ItemId));
   };
-  const itemsDom = items.map((item) => {
-    // console.log(item.price);
-    return (
-      <div key={item.id} id={item.id}>
-        <div className="item">
-          <div className="col">
-            <Link to={`/info/${item.id}`} className="linke">
-              <img src={item.image} alt=" image" className="image" />
-            </Link>
-            <div className="info">
-              <p> {item.title} </p>
-              <p>in stack</p>
-              <p>Eligible for FREE delivery</p>
-              <p>count {item.count} pieces</p>
-              <button onClick={(e) => removeItem(e, item.id)}>
-                {" "}
-                remove item{" "}
-              </button>
-            </div>
-          </div>
-          <p className="price">
-            <strong> $ {item.price * item.count} </strong>
-          </p>
-        </div>
-        <hr />
-      </div>
-    );
-  });
+
+  const updateCount = (number, ItemId) => {
+    dispatch(UPDATE_ITEM_COUNT(user.userID, ItemId, number));
+  };
+
+  useEffect(() => {
+    if (!user) {
+      dispatch(
+        AddNotifications({ msg: "you shoud login frist", type: "error" })
+      );
+      navigate("/login");
+    }
+  }, [user]);
 
   return (
     <div className="checkout">
@@ -103,14 +45,20 @@ const Checkout = () => {
           alt="ad image"
         />
         <h2 className="checkout__left__title">Your shopping Basket</h2>
-        {items.length ? itemsDom : "no items"}
+
+        {BasktItems.map((item) => {
+          return (
+            <CheckOutProductDom
+              key={item.id}
+              item={item}
+              removeItemfunc={removeItemfunc}
+              updateCount={updateCount}
+            />
+          );
+        })}
       </div>
       <div className="checkout__right">
-        <Subtotal allPrice={allPrice} allProduct={items.length} />
-        <div className="recomended">
-          <h4>Recomended</h4>
-          {items.length && recomendedItems}
-        </div>
+        <Subtotal BasktItems={BasktItems} user={user} />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AddNotifications } from "setup/actions/notification";
 import Subtotal from "../../component/subtotal/Subtotal";
 import "./checkout.scss";
-import CheckOutProductDom from "./checkOutproductDom/CheckOutProductDom";
+import CheckOutProductDom from "../../component/checkOutproductDom/CheckOutProductDom";
 import { REMOVE_ITEM, UPDATE_ITEM_COUNT } from "setup/actions/Baskt";
 
 const Checkout = () => {

@@ -1,9 +1,11 @@
 /* eslint-disable no-restricted-globals */
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.scss";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { auth } from "setup/firbase";
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
 
 function DeleteUserAccount() {
   const user = auth.currentUser;
@@ -12,7 +14,18 @@ function DeleteUserAccount() {
 }
 const AccountSetting = () => {
   const User = useSelector((state) => state.user);
-  console.log(User, auth.currentUser);
+  console.log(User);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate("/login");
+      } else {
+      }
+    });
+  }, [dispatch]);
+
   return (
     <div className="account-page">
       <h1></h1>

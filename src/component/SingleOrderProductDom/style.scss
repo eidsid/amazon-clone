@@ -1,0 +1,29 @@
+.item {
+  position: relative;
+  min-width: 300px;
+  max-width: 400px;
+  margin-bottom: 1rem;
+  @include flex(column, space-between, normal);
+
+  > * {
+    margin: 1rem;
+    display: inline-block;
+  }
+  .col {
+    display: inherit;
+    gap: 1rem;
+  }
+  .price {
+    margin-right: 1rem;
+    font-size: larger;
+  }
+  img {
+    width: 100px;
+  }
+  @media (max-width: "550px") {
+    .item {
+      transform: scale(0.75);
+      gap: 0.5rem;
+    }
+  }
+}

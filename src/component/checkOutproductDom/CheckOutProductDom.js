@@ -34,7 +34,7 @@ const CheckOutProductDom = ({
           </div>
         </div>
         <p className="price">
-          <strong> $ {price * count} </strong>
+          <strong> $ {Math.floor(price * count)} </strong>
         </p>
       </div>
       <hr />

@@ -7,7 +7,7 @@ const Subtotal = ({ BasktItems }) => {
     <div className="subtotal">
       <p>
         <span>Subtotal({BasktItems.length} items) </span>:
-        <strong> $ {getAllCost(BasktItems)}</strong>
+        <strong> $ {Math.floor(getAllCost(BasktItems))}</strong>
       </p>
       <button>
         <Link to="/payment">procesed to checkedout</Link>

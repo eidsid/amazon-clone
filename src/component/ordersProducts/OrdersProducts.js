@@ -1,23 +1,6 @@
-import { Link } from "react-router-dom";
+import SingleOrderProductDom from "component/SingleOrderProductDom/SingleOrderProductDom";
 import "./style.scss";
 const OrdersProducts = (props) => {
-  let productsDom = props.products.map((item, index) => {
-    return (
-      <div className="item" key={index}>
-        <Link to={`/info/${item.id}`} className="linke">
-          <img src={item.image} alt="image" className="image" />
-        </Link>
-        <div className="info">
-          <p> {item.title} </p>
-          <p>orderd</p>
-          <p className="price">
-            <strong> $ {item.price * item.count} </strong>
-          </p>
-        </div>
-      </div>
-    );
-  });
-
   return (
     <div className="orders">
       <div className="info">
@@ -36,7 +19,11 @@ const OrdersProducts = (props) => {
           </div>
         </div>
       </div>
-      <div className="products">{productsDom}</div>
+      <div className="products">
+        {props.products.map((item, index) => {
+          <SingleOrderProductDom item={item} key={index} />;
+        })}
+      </div>
     </div>
   );
 };

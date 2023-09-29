@@ -37,25 +37,27 @@ const Orders = () => {
     };
   }, [getOrders, user]);
 
-  let ordersDom = orders.map((order) => {
-    let date = new Date(order.created);
-
-    return (
-      <div key={order.paymentID} className="order">
-        <OrdersProducts
-          products={order.products}
-          id={order.paymentID}
-          amount={order.Amount}
-          date={date.toLocaleDateString()}
-        />
-      </div>
-    );
-  });
-
   return (
     <div className="ordersContainer">
       <h1> Orders</h1>
-      {orders.length ? ordersDom : <Loading />}
+      {orders.length ? (
+        orders.map((order) => {
+          let date = new Date(order.created);
+
+          return (
+            <div key={order.paymentID} className="order">
+              <OrdersProducts
+                products={order.products}
+                id={order.paymentID}
+                amount={order.Amount}
+                date={date.toLocaleDateString()}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

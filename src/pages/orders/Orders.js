@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getOrders } from "setup/actions/orders";
@@ -9,33 +9,20 @@ import "./style.scss";
 const Orders = () => {
   const user = useSelector((state) => state.user);
   const [orders, setOrders] = useState([]);
-  const [timeoutId1, settimeoutId1] = useState([]);
-  const [timeoutId2, settimeoutId2] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(async () => {
+
     if (user) {
+    const  getOrdersfunc=async()=>{
       let orders = await getOrders(user.userID);
       setOrders(orders);
-      clearTimeout(timeoutId1);
-      clearTimeout(timeoutId2);
+     }
+     getOrdersfunc()
     } else {
-      let timeoutId1 = setTimeout(() => {
-        dispatch(
-          AddNotifications({ msg: "you shoud login frist", type: "error" })
-        );
-        let timeoutId2 = setTimeout(() => {
-          navigate("/login");
-        }, 1500);
-        settimeoutId1(timeoutId2);
-      }, 1500);
-      settimeoutId2(timeoutId1);
+        dispatch(AddNotifications({ msg: "you shoud login frist", type: "error" }));
+        navigate("/login");
     }
-    return () => {
-      clearTimeout(timeoutId1);
-      clearTimeout(timeoutId2);
-    };
-  }, [getOrders, user]);
+
 
   return (
     <div className="ordersContainer">

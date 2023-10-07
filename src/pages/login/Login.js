@@ -1,37 +1,32 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, loginUser } from "setup/firbase";
 import { AddNotifications } from "setup/actions/notification";
-import { useDispatch } from "react-redux";
-import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
 const Login = () => {
+  const User = useSelector(state => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
   const [isProcessing, setisProcessing] = useState(false);
+  if (User) {
+    navigate("/");
+  }
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate("/");
-      }
-    });
-  }, [dispatch]);
-
-  const login = async (e) => {
+  const login = async e => {
     e.preventDefault();
     if (emailRef.current.value.length && passwordRef.current.value.length) {
       setisProcessing(true);
 
       await loginUser(auth, emailRef.current.value, passwordRef.current.value)
-        .then((user) => {
+        .then(user => {
           if (user) {
             dispatch(
               AddNotifications({
                 msg: "welcome back" + user.user.email,
-                type: "success",
+                type: "success"
               })
             );
             navigate("/");

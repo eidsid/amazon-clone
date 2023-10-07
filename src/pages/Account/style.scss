@@ -1,10 +1,15 @@
+@import "../../global/virables.scss";
+
 .account-page {
   background-color: #f0f2f5;
   padding: 20px;
   border-radius: 5px;
+  min-height: 70vh;
+  @include flex(column,center,center);
+
 
   h1 {
-    font-size: 24px;
+    font-size: 30px;
     color: #111;
   }
 

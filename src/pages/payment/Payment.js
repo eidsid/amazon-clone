@@ -7,6 +7,7 @@ import "./style.scss";
 import axios from "axios";
 import { AddOrder } from "setup/actions/orders";
 import { AddNotifications } from "setup/actions/notification";
+import { getAllCost } from "hooks/CalcTotalCost";
 
 const Payment = () => {
   const user = useSelector((state) => state.user);
@@ -15,17 +16,16 @@ const Payment = () => {
 
   const Baskt = useSelector((state) => state.Baskt);
   const [products, setproducts] = useState(Baskt);
-  const [TotalCost, setTotalCost] = useState(null);
-  const [timeoutId, settimeoutId] = useState(null);
 
   const removeItem = (e, id) => {
     e.target.parentElement.parentElement.classList.add("close");
-    setTimeout(() => {
+   
       dispatch(
         AddNotifications({ msg: "item removed success ", type: "success" })
       );
+     
       setproducts((products) => products.filter((item) => item.id !== id));
-    }, 700);
+    
   };
   const itemsDom = products.map((item) => {
     return (
@@ -50,9 +50,12 @@ const Payment = () => {
   const [disabled, setdisabled] = useState(true);
   const [processing, setprocessing] = useState("");
   const [succeeded, setsucceeded] = useState(false);
-
   const stripe = useStripe();
   const elements = useElements();
+  let TotalCost=getAllCost(products);
+  useEffect(() => {
+     TotalCost=getAllCost(products);
+  }, [products.length])
   const handelChange = (e) => {
     setCarderrors(e.error ? e.error.message : "");
     setdisabled(!e.empity & e.complete & !Carderrors ? false : true);
@@ -61,7 +64,7 @@ const Payment = () => {
   const handelSubmit = async (e) => {
     e.preventDefault();
     setprocessing(true);
-    //  generate the epecial tripe secret which alows us to charge acustomer
+    //  generate the epecial stripe secret which alows us to charge acustomer
     await axios
       .post("https://amazone-clone-server.onrender.com/payments/create", {
         total: Math.floor(TotalCost * 1),
@@ -89,32 +92,12 @@ const Payment = () => {
       });
   };
 
-  useEffect(() => {
     if (!user) {
-      let timeId = setTimeout(() => {
         dispatch(
           AddNotifications({ msg: "you shoud login frist", type: "error" })
         );
-        navigate("/login");
-      }, 2000);
-      settimeoutId(timeId);
-    } else {
-      clearTimeout(timeoutId);
-    }
-    const editCost = () => {
-      let price =
-        products.length > 0
-          ? products
-              .map((item) => item.price * item.count)
-              .reduce((p, c) => p + c)
-          : 0;
-      setTotalCost(Math.round(price));
-    };
-    editCost();
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [products, TotalCost, user]);
+        navigate("/login"); 
+        }
 
   return (
     <>

@@ -31,7 +31,6 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
-
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(getUser(user.uid));
@@ -42,26 +41,27 @@ function App() {
     });
   }, [dispatch]);
 
-  return (
+const RoutesData=[
+  {path:"/"         ,Element:<Home />, Exact:true},
+  {path:"/login"    ,Element:<Login />, Exact:true},
+  {path:"/register" ,Element:<Register />, Exact:true},
+  {path:"checkout"  ,Element:<Checkout />, Exact:false},
+  {path:"info/:id"  ,Element:<ProdcutInfo />, Exact:false},
+  {path:"/payment"  ,Element:<Elements stripe={promise}><Payment /></Elements>, Exact:true},
+  {path:"/orders"   ,Element:<Orders />, Exact:true},
+  {path:"/account"  ,Element:<AccountSetting />, Exact:true},
+
+]
+  
+return (
     <BrowserRouter>
       <Header />
       <Notifications />
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="info/:id" element={<ProdcutInfo />} />
-        <Route
-          path="/payment"
-          element={
-            <Elements stripe={promise}>
-              <Payment />
-            </Elements>
-          }
-        />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/account" element={<AccountSetting />} />
+       {RoutesData.map(({path,Element,Exact},index)=>{
+         return <Route path={path} element={Element}  exact={Exact} key={index}/>
+       })}
+   
       </Routes>
       <Footer />
     </BrowserRouter>

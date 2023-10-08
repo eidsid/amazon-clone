@@ -5,6 +5,7 @@ import "./checkout.scss";
 import CheckOutProductDom from "../../component/checkOutproductDom/CheckOutProductDom";
 import { REMOVE_ITEM, UPDATE_ITEM_COUNT } from "setup/actions/Baskt";
 import useLoginRedirect from "hooks/useLoginRedirect";
+import Loading from "component/loadingIcon/Loading";
 
 const Checkout = () => {
   const BasktItems = useSelector((state) => state.Baskt);
@@ -37,16 +38,20 @@ const Checkout = () => {
         />
         <h2 className="checkout__left__title">Your shopping Basket</h2>
 
-        {BasktItems.map((item) => {
-          return (
-            <CheckOutProductDom
-              key={item.id}
-              item={item}
-              removeItemfunc={removeItemfunc}
-              updateCount={updateCount}
-            />
-          );
-        })}
+        {BasktItems && BasktItems?.length ? (
+          BasktItems.map((item) => {
+            return (
+              <CheckOutProductDom
+                key={item.id}
+                item={item}
+                removeItemfunc={removeItemfunc}
+                updateCount={updateCount}
+              />
+            );
+          })
+        ) : (
+          <Loading />
+        )}
       </div>
       <div className="checkout__right">
         <Subtotal BasktItems={BasktItems} user={user} />

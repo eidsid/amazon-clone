@@ -49,7 +49,7 @@ const Payment = () => {
   const [disabled, setDisabled] = useState(true);
   const [processing, setProcessing] = useState("");
   const [succeeded, setSucceeded] = useState(false);
-  const [Country, setCountry] = useState("");
+  const [Country, setCountry] = useState("Egypt");
   const stripe = useStripe();
   const elements = useElements();
   let totalCost = getAllCost(products);

@@ -1,16 +1,14 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { AddNotifications } from "setup/actions/notification";
 import Subtotal from "../../component/subtotal/Subtotal";
 import "./checkout.scss";
 import CheckOutProductDom from "../../component/checkOutproductDom/CheckOutProductDom";
 import { REMOVE_ITEM, UPDATE_ITEM_COUNT } from "setup/actions/Baskt";
+import useLoginRedirect from "hooks/useLoginRedirect";
 
 const Checkout = () => {
   const BasktItems = useSelector((state) => state.Baskt);
   const user = useSelector((state) => state.user);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const removeItemfunc = (ItemId) => {
@@ -27,14 +25,7 @@ const Checkout = () => {
     dispatch(UPDATE_ITEM_COUNT(user.userID, ItemId, number));
   };
 
-  useEffect(() => {
-    if (!user) {
-      dispatch(
-        AddNotifications({ msg: "you shoud login frist", type: "error" })
-      );
-      navigate("/login");
-    }
-  }, [user]);
+  useLoginRedirect(user);
 
   return (
     <div className="checkout">

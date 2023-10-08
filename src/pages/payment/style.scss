@@ -1,98 +1,138 @@
 @import "../../global/virables.scss";
-
-$BGcolor: white;
 .checkCount {
-  text-align: center;
-  padding: 1rem;
-  span {
-    color: rgb(153, 7, 158);
-    font-weight: 400;
+  margin: 0 auto;
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    span {
+      font-weight: bold;
+    }
   }
 }
 
 .paymentContainer {
-  background-color: $BGcolor;
-  min-height: 100vh;
-  > *:not(hr) {
-    max-width: 500px;
-    padding: 1rem;
-    @include flex(row, flex-start, flex-start, 2rem);
+  span {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+  }
+  padding: 1rem;
+  .address__info {
+    text-align: center;
+    line-height: 2rem;
 
-    > span {
-      font-weight: 800;
+    p {
+      margin-bottom: 5px;
+      font-size: 14px;
     }
   }
+
+  hr {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+
   .productsSection {
-    .product {
-      @include flex(row, flex-start, flex-start, 2rem);
-
-      min-width: 500px;
-      img {
-        width: 150px;
-        height: 150px;
-      }
-      &.close {
-        animation: forwards 0.7s ease-in closeOrderditemAnim;
-      }
-    }
-  }
-  .paymentMothed {
-    min-width: 100%;
-    > div {
-      @include flex(column, flex-start, flex-start, 2rem);
-
-      > span {
-        font-weight: 600;
-      }
-    }
-    .cardInfo {
-      opacity: 0.7;
-      margin-bottom: 1rem;
-      .card-element {
-        width: 400px !important;
-      }
-      .errors {
-        margin-top: 1rem;
-      }
-    }
-    .order {
-      @include flex(column, flex-start, flex-start, 2rem);
-      border: 1px solid rgb(153, 153, 153);
-      padding: 1rem;
-      margin: 2rem auto;
-      width: 300px;
-      > * {
-        width: 100%;
-        &:is(span) {
-          padding: 2px;
-          font-weight: 600;
-        }
-        &:is(button) {
-          background-color: rgb(255, 208, 0);
-          padding: 2px;
-        }
-      }
-    }
-  }
-}
-
-@keyframes closeOrderditemAnim {
-  100% {
-    transform: translateY(-200%);
-    opacity: 0;
-  }
-}
-
-@media (max-width: "700px") {
-  .paymentContainer {
-    > *:not(hr) {
-      flex-direction: column;
-      align-items: center;
-    }
-    .productsSection {
+    .products {
+      @include flex(row, center, center, 2rem);
+      flex-wrap: wrap;
       .product {
-        transform: scale(0.75);
-        gap: 0.5rem;
+        @include flex(column, center, center, 2rem);
+        margin-bottom: 20px;
+        height: max-content;
+        border-radius: 15px;
+        .linke {
+          margin-right: 10px;
+        }
+
+        .image {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+        }
+
+        .info {
+          flex: 1;
+
+          p {
+            margin: 5px 0;
+            font-size: 14px;
+          }
+
+          button {
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: #c82333;
+            }
+          }
+
+          .price {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .paymentMethod {
+    max-width: 600px;
+    margin: 0 auto;
+
+    div {
+      .cardInfo {
+        form {
+          .StripeElement {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+          }
+
+          .errors {
+            color: #dc3545;
+            font-size: 14px;
+            margin-bottom: 10px;
+          }
+
+          .order {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+
+            span {
+              font-size: 16px;
+              font-weight: bold;
+            }
+
+            button {
+              padding: 10px 20px;
+              font-size: 16px;
+              background-color: #007bff;
+              color: #fff;
+              border: none;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+
+              &:hover {
+                background-color: #0069d9;
+              }
+            }
+          }
+        }
       }
     }
   }

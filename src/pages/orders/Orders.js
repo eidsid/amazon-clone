@@ -30,6 +30,7 @@ const Orders = () => {
                 products={order.products}
                 id={order.paymentID}
                 amount={order.Amount}
+                adress={order?.Country}
                 date={date.toLocaleDateString()}
               />
             </div>
